@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+    install:
+        commands:
+            - npm install
+            - npm install -g @angular/cli
+    pre_build:
+    commands:
+      - npm run test
+    build:
+        commands:
+            - ng build --prod
+    post_build:
+         commands:
+            - aws s3 sync --delete dist/continuous-delivery-front-demo s3://fantasy-football-2019
+            - echo Build completed on `date`
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'dist/*'
+    discard-paths: yes
