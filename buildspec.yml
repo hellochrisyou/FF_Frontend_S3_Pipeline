@@ -26,7 +26,7 @@ phases:
             - ng build --prod
     post_build:
          commands:
-            - aws s3 sync --delete ./dist/angular-ff s3://fantasy-football-2019.com
+            - aws s3 sync --delete ./dist/angular-ff s3://fantasy-football-2019.chrisyou.com
             - echo Build completed on `date`
 artifacts:
     files:
