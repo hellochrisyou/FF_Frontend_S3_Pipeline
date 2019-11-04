@@ -5,9 +5,10 @@ phases:
         commands:
             - npm install
             - npm install -g @angular/cli
+            
     pre_build:
-    commands:
-      - npm run test
+        commands:
+          - npm run test
     build:
         commands:
             - ng build --prod
