@@ -12,6 +12,12 @@ exports.config = {
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
+  // capabilities: {
+  //   'browserName': 'chrome',
+  //   chromeOptions: {
+  //     args : [ '--headless' , '-disable GPU' , '--window-size = 800x600' , '-disable-dev-shm-usage' ] 
+  //   }
+  // },
   capabilities: {
     'browserName': 'chrome'
   },

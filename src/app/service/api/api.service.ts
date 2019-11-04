@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable, ErrorHandler } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { League } from 'src/app/shared/model/interface.model';
-import { ErrorHandlerGlobal } from '../error-handler';
+// import { ErrorHandlerGlobal } from '../error-handler';
 import { throwError } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({})
@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class ApiService {
   bodyParam = {};
-  errorHandlerGlobal = new ErrorHandlerGlobal();
+  // errorHandlerGlobal = new ErrorHandlerGlobal();
   constructor(private http: HttpClient) {}
 
   extractData(res: Response) {
@@ -38,7 +38,7 @@ export class ApiService {
   httpGet(url: string): Observable<any> {
     return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
-      catchError(this.errorHandlerGlobal.handleError)
+      // catchError(this.errorHandlerGlobal.handleError)
     );
   }
 
@@ -49,7 +49,7 @@ export class ApiService {
   httpPost(url: string, bodyParam): Observable<any> {
     return this.http.post(url, bodyParam, httpOptions).pipe(
       map(this.extractData),
-      catchError(this.errorHandlerGlobal.handleError)
+      // catchError(this.errorHandlerGlobal.handleError)
     );
   }
 
@@ -57,7 +57,7 @@ export class ApiService {
     return this.http.put(url, bodyParam, httpOptions).pipe(
       map(this.extractData),
       // catchError(this.handleError)
-      catchError(this.errorHandlerGlobal.handleError)
+      // catchError(this.errorHandlerGlobal.handleError)
     );
   }
 }
