@@ -8,7 +8,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
 import { Router } from '@angular/router';
 import * as globals from '../shared/var/enum';
-import { AllLeaguesGQL } from '../shared/query/AllLeaguesGQL';
 import { Apollo } from 'apollo-angular';
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -46,7 +45,6 @@ export class CreateLeagueComponent implements OnInit {
     private api: ApiService,
     public router: Router,
     private apollo: Apollo,
-    private allLeaguesGQL: AllLeaguesGQL
   ) { }
 
   ngOnInit() {

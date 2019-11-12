@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CreateLeagueRoutingModule } from './create-league-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CreateLeagueComponent } from './create-league.component';
-import { CreateLeagueGQL } from '../shared/mutation/CreateLeagueGQL';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 

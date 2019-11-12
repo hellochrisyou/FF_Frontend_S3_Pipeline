@@ -5,9 +5,11 @@ import gql from 'graphql-tag';
 @Injectable({
     providedIn: 'root',
 })
-export class LeagueGQL extends Query<Response> {
-    document = gql`
-    query getLeague{        
-    }
+export class accountGQL extends Query<Account> {
+    readonly accountQuery = gql`
+    query getAccount {
+        account($name: String) {      
+        }
+      }
   `;
 }

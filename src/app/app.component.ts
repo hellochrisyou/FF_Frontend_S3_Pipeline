@@ -1,9 +1,10 @@
 // import {AuthService} from './core/auth/auth.service';
 import { LeagueService } from './service/model/league.service';
 import { NotifyService } from './service/emit/notify.service';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { Button } from 'protractor';
+import { AfterViewInit, Component } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { AuthService } from './core/auth/auth.service';
+import { authenticateQuery } from './shared/query/authenticateQuery';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,16 @@ import { Button } from 'protractor';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  userName = 'default';
+  userName: string = '';
+  password: string = '';
   condition: boolean = false;
 
+  apollo: Apollo;
+  user: any;
+  loggedIn: boolean;
+
   constructor(private notifyService: NotifyService, private leagueService: LeagueService,
-    private elementRef: ElementRef
+    private authService: AuthService
     // public auth: AuthService
   ) {
     // auth.handleAuthentication();
@@ -27,14 +33,23 @@ export class AppComponent implements AfterViewInit {
     this.notifyService.sendUserName.subscribe(userName => {
       this.userName = userName;
     });
-    // if (this.auth.isAuthenticated()) {
-    //   this.auth.renewTokens();
-    // }
+
+    this.apollo.query({
+      query: authenticateQuery,
+      fetchPolicy: 'network-only'
+    }).subscribe(({ data }) => {
+      this.user = data;
+    });
   }
 
   btnClick() {
     console.log('this.condition', this.condition);
     this.condition = !this.condition;
     console.log('this.condition', this.condition);
+  }
+
+  logout() {
+    this.loggedIn = false;
+    this.authService.logout();
   }
 }

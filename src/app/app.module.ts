@@ -22,15 +22,6 @@ import { routingModule } from "./app-routing.module";
 import { CreateTeamModule } from './create-team/create-team.module';
 import { DraftModule } from './draft/draft.module';
 import { CreateLeagueModule } from './create-league/create-league.module';
-import { CreateLeagueGQL } from './shared/mutation/CreateLeagueGQL';
-import { CreateTeamGQL } from './shared/mutation/CreateTeamGQL';
-import { AddPlayerGQL } from './shared/mutation/AddPlayerGQL';
-import { AddWaiverGQL } from './shared/mutation/AddWaiverGQL';
-import { TogglePlayerGQL } from './shared/mutation/TogglePlayerGQL';
-import { TradeTeamGQL } from './shared/mutation/TradeTeamGQL';
-import { AccountGQL } from './shared/query/AccountGQL';
-import { AllLeaguesGQL } from './shared/query/AllLeaguesGQL';
-import { LeagueGQL } from './shared/query/LeagueGQL';
 import { GraphQLModule } from './graphql.module';
 
 // import { LastSeasonRestApiService } from './service/nfl-api/last-season-rest-api.service';
@@ -70,16 +61,7 @@ import { GraphQLModule } from './graphql.module';
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
     AddPlayerService,
     WaiverService,
-    DraftService,
-    CreateLeagueGQL,
-    CreateTeamGQL,
-    AddPlayerGQL,
-    AddWaiverGQL,
-    TogglePlayerGQL,
-    TradeTeamGQL,
-    AccountGQL,
-    AllLeaguesGQL,
-    LeagueGQL
+    DraftService
     // AuthGuardService
   ],
   bootstrap: [AppComponent]

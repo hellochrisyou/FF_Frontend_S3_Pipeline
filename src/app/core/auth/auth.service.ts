@@ -1,3 +1,26 @@
+import { ApiService } from '../../service/api/api.service';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { AUTH_CONFIG } from './auth0-variables';
+import * as auth0 from 'auth0-js';
+import { LeagueService } from '../../service/model/league.service';
+import * as globals from '../../shared/var/enum';
+import { HttpClient } from 'selenium-webdriver/http';
+import { map } from 'rxjs/operators';
+import { Apollo } from 'apollo-angular';
+@Injectable({
+    providedIn: 'root'
+})
+export class AuthService {
+
+    constructor(private apollo: Apollo) { }
+    logout() {
+        // some app logic
+
+        // reset the store after that
+        this.apollo.getClient().resetStore();
+    }
+}
 // import {ApiService} from '../../service/api/api.service';
 // import {Injectable} from '@angular/core';
 // import {Router} from '@angular/router';
