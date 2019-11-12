@@ -1,11 +1,11 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {AuthService} from '../core/auth/auth.service';
-import {LeagueService} from '../service/model/league.service';
-import {ApiService} from '../service/api/api.service';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+// import {AuthService} from '../core/auth/auth.service';
+import { LeagueService } from '../service/model/league.service';
+import { ApiService } from '../service/api/api.service';
 import * as globals from '../shared/var/enum';
-import {League, LeagueMenu} from '../shared/model/interface.model';
-import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
-import {MatTableDataSource} from '@angular/material/table';
+import { League, LeagueMenu } from '../shared/model/interface.model';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home',
@@ -26,11 +26,11 @@ export class HomeComponent implements AfterViewInit {
   displayedColumns: string[] = ['option', 'name', 'count'];
 
   constructor(
-    public auth: AuthService,
+    // public auth: AuthService,
     private formBuilder: FormBuilder,
     private leagueService: LeagueService,
     private api: ApiService
-  ) {}
+  ) { }
   ngAfterViewInit() {
     const userName = this.leagueService.getUserName();
     this.api.httpGet(globals.ApiUrls.findAccount + userName).subscribe(account => {

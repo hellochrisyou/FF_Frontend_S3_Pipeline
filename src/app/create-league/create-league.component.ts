@@ -1,13 +1,17 @@
-import {ApiService} from '../service/api/api.service';
-import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
-import {League} from 'src/app/shared/model/interface.model';
-import {Account, Team} from '../shared/model/interface.model';
-import {LeagueService} from 'src/app/service/model/league.service';
-import {MatDialog} from '@angular/material/dialog';
-import {SubmitPopupDialog} from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import {Router} from '@angular/router';
+import { ApiService } from '../service/api/api.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
+import { League } from 'src/app/shared/model/interface.model';
+import { Account, Team } from '../shared/model/interface.model';
+import { LeagueService } from 'src/app/service/model/league.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { Router } from '@angular/router';
 import * as globals from '../shared/var/enum';
+import { AllLeaguesGQL } from '../shared/query/AllLeaguesGQL';
+import { Apollo } from 'apollo-angular';
+import { ErrorStateMatcher } from '@angular/material/core';
+
 
 @Component({
   selector: 'app-create-league',
@@ -18,10 +22,8 @@ export class CreateLeagueComponent implements OnInit {
   league = '';
   helmet = 'red';
   draftPlayers: any[];
-  leagueNames: string[] = [];
-  leagueFormGroup: FormGroup;
-  leagueFormCtrl = new FormControl('', [Validators.required]);
-  helmetFormCtrl = new FormControl('', [Validators.required]);
+  leagueNames: String[];
+  myGroup: FormGroup;
 
   myLeague: League = {
     name: '',
@@ -42,18 +44,31 @@ export class CreateLeagueComponent implements OnInit {
     private leagueService: LeagueService,
     private formBuilder: FormBuilder,
     private api: ApiService,
-    public router: Router
-  ) {}
+    public router: Router,
+    private apollo: Apollo,
+    private allLeaguesGQL: AllLeaguesGQL
+  ) { }
 
   ngOnInit() {
-    this.leagueFormGroup = this.formBuilder.group({
-      leagueFormCtrl: ['', , Validators.required, Validators.min(1)],
-      helmetFormCtrl: ['', , Validators.required, Validators.min(1)]
+    this.allLeaguesGQL.fetch().subscribe(result => {
+      console.log(result.data);
+      this.leagueNames = result.data.leagueNames;
+    })
+
+    this.myGroup = this.formBuilder.group({
+      nameFormCtrl: new FormControl('', Validators.required),
+      helmetFormCtrl: new FormControl('', Validators.required)
     });
-    this.leagueNames = this.leagueService.getAllLeagueNames();
+    // this.leagueNames = this.leagueService.getAllLeagueNames();
+
+
   }
 
+
+
   createLeague(leagueName, helmet): void {
+    console.log('leagueNmae', leagueName);
+    console.log('helmet', helmet);
     if (this.leagueService.findLeagueNameExist(leagueName)) {
       this.duplicatePopup(leagueName);
     } else {

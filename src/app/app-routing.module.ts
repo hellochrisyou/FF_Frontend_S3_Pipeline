@@ -1,16 +1,12 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {CallbackComponent} from './callback/callback.component';
-import {AuthGuardService as AuthGuard} from './core/auth/auth-guard';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { CreateLeagueComponent } from './create-league/create-league.component';
+import { ModuleWithProviders } from "@angular/core";
+
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  // {path: '', redirectTo: '/home', pathMatch: 'full'},
-  // {
-  //   path: 'callback',
-  //   component: CallbackComponent
-  // },
+  { path: '', component: HomeComponent },
   {
     path: 'create-league',
     loadChildren: () => import('./create-league/create-league.module').then(mod => mod.CreateLeagueModule)
@@ -26,17 +22,11 @@ const routes: Routes = [
   {
     path: 'in-season',
     loadChildren: () => import('./in-season/in-season.module').then(mod => mod.InSeasonModule)
+  },
+  {
+    path: '**',
+    component: HomeComponent
   }
-
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // }
 ];
 
-@NgModule({
-  declarations: [],
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}
+export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);

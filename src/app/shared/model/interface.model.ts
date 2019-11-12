@@ -134,3 +134,8 @@ export interface Matchup {
   myPlayer: Player;
   otherPlayer: Player;
 }
+
+export interface AllNames {
+  leagueNames: String[];
+  teamNames: String[];
+}
