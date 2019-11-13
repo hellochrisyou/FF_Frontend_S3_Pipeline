@@ -48,10 +48,10 @@ export class CreateLeagueComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.allLeaguesGQL.fetch().subscribe(result => {
-      console.log(result.data);
-      this.leagueNames = result.data.leagueNames;
-    })
+    // this.allLeaguesGQL.fetch().subscribe(result => {
+    //   console.log(result.data);
+    //   this.leagueNames = result.data.leagueNames;
+    // })
 
     this.myGroup = this.formBuilder.group({
       nameFormCtrl: new FormControl('', Validators.required),

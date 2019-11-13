@@ -139,3 +139,9 @@ export interface AllNames {
   leagueNames: String[];
   teamNames: String[];
 }
+
+interface EventData {
+  email: string
+  password: string
+  name: string
+}

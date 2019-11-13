@@ -23,11 +23,11 @@ import { CreateTeamModule } from './create-team/create-team.module';
 import { DraftModule } from './draft/draft.module';
 import { CreateLeagueModule } from './create-league/create-league.module';
 import { GraphQLModule } from './graphql.module';
-
-// import { LastSeasonRestApiService } from './service/nfl-api/last-season-rest-api.service';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './core/auth/auth.service';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -61,9 +61,13 @@ import { GraphQLModule } from './graphql.module';
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
     AddPlayerService,
     WaiverService,
-    DraftService
+    DraftService,
+    AuthService
     // AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}
+

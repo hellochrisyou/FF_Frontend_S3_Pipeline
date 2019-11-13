@@ -5,6 +5,8 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { AuthService } from './core/auth/auth.service';
 import { authenticateQuery } from './shared/query/authenticateQuery';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { GC_USER_ID, GC_AUTH_TOKEN } from './shared/var/globals';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +16,11 @@ import { authenticateQuery } from './shared/query/authenticateQuery';
 export class AppComponent implements AfterViewInit {
   userName: string = '';
   password: string = '';
+
   condition: boolean = false;
-
-  apollo: Apollo;
-  user: any;
-  loggedIn: boolean;
-
-  constructor(private notifyService: NotifyService, private leagueService: LeagueService,
+  loggedIn: boolean = false;
+  constructor(private leagueService: LeagueService,
     private authService: AuthService
-    // public auth: AuthService
   ) {
     // auth.handleAuthentication();
   }
@@ -30,16 +28,17 @@ export class AppComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.notifyService.sendUserName.subscribe(userName => {
-      this.userName = userName;
-    });
+    this.authService.isAuthenticated
+      .pipe(distinctUntilChanged()) // Only emit when the current value is different than the last
+      .subscribe(isAuthenticated => {
+        this.loggedIn = isAuthenticated
+      });
+  }
 
-    this.apollo.query({
-      query: authenticateQuery,
-      fetchPolicy: 'network-only'
-    }).subscribe(({ data }) => {
-      this.user = data;
-    });
+  saveUserData(id, token) {
+    localStorage.setItem(GC_USER_ID, id);
+    localStorage.setItem(GC_AUTH_TOKEN, token);
+    this.authService.setUserId(id);
   }
 
   btnClick() {
