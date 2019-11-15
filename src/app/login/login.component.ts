@@ -65,56 +65,48 @@ export class LoginComponent implements OnInit {
   }
 
   login(accountName: string, password: string) {
-    this.submitted = true;
-    if (this.signInFG.invalid) {
-      return;
-    } else {
-      this.thisDto.myAccountName = accountName;
-      this.thisDto.password = password;
-      this.apollo.query(
-        {
-          query: authenticateQuery,
-          variables: {
-            dto: this.thisDto
-          }
-        })
-        .subscribe((result) => {
-          this.authService.setAccountName(this.thisDto.myAccountName);
-          this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
-          this.router.navigate(['/home']);
-        }, ((err) => {
-          console.log('login error', err);
-          this.onReset();
-        })
-        );
-    }
+    console.log('accountname', accountName);
+
+    this.thisDto.myAccountName = accountName;
+    this.thisDto.password = password;
+    this.apollo.query(
+      {
+        query: authenticateQuery,
+        variables: {
+          dto: this.thisDto
+        }
+      })
+      .subscribe((result) => {
+        this.authService.setAccountName(this.thisDto.myAccountName);
+        this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
+        this.router.navigate(['/home']);
+      }, ((err) => {
+        console.log('login error', err);
+        this.onReset();
+      })
+      );
   }
 
   register(accountName: string, password: string) {
-    this.submitted = true;
-    if (this.signUpFG.invalid) {
-      return;
-    } else {
-      this.thisDto.myAccountName = accountName;
-      this.thisDto.password = password;
-      this.apollo.mutate(
-        {
-          mutation: register,
-          variables: {
-            dto: this.thisDto
-          }
-        })
-        .subscribe((result) => {
-          this.authService.setAccountName(this.thisDto.myAccountName);
-          this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
-          this.authService.saveUserData
-          this.router.navigate(['/home']);
-        }, ((err) => {
-          console.log('login error', err);
-          this.onReset();
-        })
-        );
-    }
+    this.thisDto.myAccountName = accountName;
+    this.thisDto.password = password;
+    this.apollo.mutate(
+      {
+        mutation: register,
+        variables: {
+          dto: this.thisDto
+        }
+      })
+      .subscribe((result) => {
+        this.authService.setAccountName(this.thisDto.myAccountName);
+        this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
+        this.authService.saveUserData
+        this.router.navigate(['/home']);
+      }, ((err) => {
+        console.log('login error', err);
+        this.onReset();
+      })
+      );
   }
 
   onReset() {

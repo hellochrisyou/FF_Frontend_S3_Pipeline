@@ -12,26 +12,41 @@ import ApolloLinkTimeout from 'apollo-link-timeout';
 const REQUEST_TIMEOUT = 30000;
 
 
+const uri = 'http://localhost:8080/graphql';
+
 export function provideApollo(httpLink: HttpLink, authService: AuthService) {
+    const token = localStorage.getItem('token');
 
-    // Authorization header
-    const authMiddleware = new ApolloLink((operation, forward) => {
-        operation.setContext(({ headers }) => ({
-            headers: headers.append('Authorization', localStorage.getItem('token') || null).append('Accept', 'charset=utf-8').append('Content-Type', 'application/json'),
-        }));
-        return forward(operation);
-    })
+    let tmpHeaders = new Headers();
+    tmpHeaders.append('Accept', 'application/json');
+    tmpHeaders.append('Content-Type', 'application/json');
+    tmpHeaders.append('Access-Control-Allow-Headers', '*');
+    tmpHeaders.append('Access-Control-Allow-Origin', '*');
+    tmpHeaders.append('Authorization', 'Bearer ' + token);
 
-    const apolloErrorLink: ApolloLink = onError(({ graphQLErrors, networkError }) => {
-        if (graphQLErrors) {
-            graphQLErrors.map(({ message, locations, path }) =>
-                console.log(`GraphQL error: Message: ${message} Location: ${JSON.stringify(locations)} Path: ${path}`)
-            );
-        }
-        if (networkError) {
-            console.log(`GraphQL network error:`, networkError);
-        }
-    });
+    const basic = setContext((operation, context) => ({
+        headers: tmpHeaders
+    }));
+
+    // Get the authentication token from local storage if it exists
+    // const auth = setContext((operation, context) => ({
+    //     headers: {
+    //         Authorization: `Bearer ${token}`
+    //     }
+    // }));
+
+    const passLink = ApolloLink.from([basic, httpLink.create({ uri, method: "GET", })]);
+
+    // const apolloErrorLink: ApolloLink = onError(({ graphQLErrors, networkError }) => {
+    //     if (graphQLErrors) {
+    //         graphQLErrors.map(({ message, locations, path }) =>
+    //             console.log(`GraphQL error: Message: ${message} Location: ${JSON.stringify(locations)} Path: ${path}`)
+    //         );
+    //     }
+    //     if (networkError) {
+    //         console.log(`GraphQL network error:`, networkError);
+    //     }
+    // });
 
     // Logout Link
     // const logoutLink = onError(({ networkError }) => {
@@ -43,25 +58,19 @@ export function provideApollo(httpLink: HttpLink, authService: AuthService) {
     //     ) authService.logout();
     // });
 
-    // ?????????
-    // const token = localStorage.getItem('token');
-    // const auth = setContext((operation, context) => ({
-    //     headers: {
-    //         Authorization: `Bearer ${token}`
-    //     },
-    // }));
-
-    const link = ApolloLink.from([new ApolloLinkTimeout(REQUEST_TIMEOUT), apolloErrorLink, authMiddleware, httpLink.create({ uri: 'http://localhost:8080/graphql' })]);
-    const cache = new InMemoryCache();
-
     return {
-        link,
-        cache
-    }
+        link: uri,
+        cache: new InMemoryCache(),
+        fetchOptions: {
+            mode: 'no-cors',
+        },
+        headers: tmpHeaders
+    };
 }
 
 @NgModule({
     exports: [
+        HttpClientModule,
         ApolloModule,
         HttpLinkModule
     ],

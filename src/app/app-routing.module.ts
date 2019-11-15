@@ -12,6 +12,11 @@ const routes: Routes = [
   //   loadChildren: () => import('./create-league/create-league.module').then(mod => mod.CreateLeagueModule)
   // },
   {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
+  },
+  {
     path: 'create-team',
     loadChildren: () => import('./create-team/create-team.module').then(m => m.CreateTeamModule)
   },
@@ -27,11 +32,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
+
   {
     path: 'in-season',
     loadChildren: () => import('./in-season/in-season.module').then(m => m.InSeasonModule)
@@ -49,7 +50,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', enableTracing: true })
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
     // RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
   ],
   exports: [

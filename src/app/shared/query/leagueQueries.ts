@@ -1,14 +1,14 @@
 import gql from 'graphql-tag';
 
 export const leagueQuery = gql`
-query getLeague{      
-  league: League  
+query getLeague($dto: Dto){      
+  league(dto: $dto)
 }
 `;
 
 export const leaguesQuery = gql`
 query allNames{
-    leagues(dto: Dto) {
+    leagues {
         leagueName
         teams {
             teamName
