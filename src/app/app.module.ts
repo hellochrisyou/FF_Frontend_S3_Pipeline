@@ -14,8 +14,8 @@ import { ApiService } from './core/services/api/api.service';
 import { AddPlayerService } from './core/services/emit/add-player.service';
 import { WaiverService } from './core/services/concrete/waiver.service';
 import { DraftService } from './core/services/concrete/draft.service';
-import { APOLLO_OPTIONS } from "apollo-angular";
-import { HttpLink } from "apollo-angular-link-http";
+import { APOLLO_OPTIONS, ApolloModule } from "apollo-angular";
+import { HttpLink, HttpLinkModule } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { RoutingModule } from "./app-routing.module";
 import { CreateTeamModule } from './create-team/create-team.module';
@@ -46,8 +46,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BrowserAnimationsModule,
     GraphQLModule,
     HttpClientModule,
+    ApolloModule,
+    HttpLinkModule,
     CoreModule,
-    FormsModule,
+    // FormsModule,
     MaterialModule,
     // CreateLeagueModule,
     // CreateTeamModule,
@@ -56,10 +58,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     // HomeModule,
     // LoginModule,
     // InSeasonModule,
-    // FormsModule,
+    FormsModule,
     // HttpClientModule,
     // MaterialModule,
-    MatDialogModule,
+    // MatDialogModule,
     ReactiveFormsModule,
     GraphQLModule,
     // MatFormFieldModule,

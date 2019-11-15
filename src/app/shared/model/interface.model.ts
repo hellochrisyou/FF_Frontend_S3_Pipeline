@@ -65,7 +65,7 @@ export interface Account {
   id?: number | string;
   accountName: string;
   password: string;
-  roles: Role[];
+  roles?: Role[];
   leagues?: League[];
   teams?: Team[];
 }
@@ -115,14 +115,14 @@ export interface WaiverData {
 }
 
 export interface Dto {
-  myLeagueName: string;
-  myAccountName: string;
-  password: String;
-  myTeamName: string;
-  myTeamHelmet: string;
-  otherTeamName: string;
-  player1: Player;
-  player2: Player;
+  myLeagueName?: string;
+  myAccountName?: string;
+  password?: String;
+  myTeamName?: string;
+  myTeamHelmet?: string;
+  otherTeamName?: string;
+  player1?: Player;
+  player2?: Player;
 }
 
 export interface LeagueMenu {

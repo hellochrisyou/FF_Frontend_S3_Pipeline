@@ -5,39 +5,47 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { LeagueService } from '../core/services/model/league.service';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { ACCOUNT_NAME, TOKEN } from '../shared/var/globals';
+import { Dto } from '../shared/model/interface.model';
+import { Apollo } from 'apollo-angular';
+import { register } from '../shared/mutation/accountMutations';
+import { authenticateQuery } from '../shared/query/accountQuery';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  userName: string = '';
-  password: string = '';
-  condition: boolean = true;
 
+  thisDto: Dto = {
+    myAccountName: '',
+    password: ''
+  }
+
+  condition: boolean = true;
   submitted = false;
+  loggedIn: boolean = false;
 
   signInFG: FormGroup;
   signUpFG: FormGroup;
-
   signInNameCtrl = new FormControl('', [Validators.required, Validators.min(3)]);
   signInPasswordCtrl = new FormControl('', [Validators.required, Validators.min(3)]);
   signUpNameCtrl = new FormControl('', [Validators.required, Validators.min(3)]);
   signUpPasswordCtrl = new FormControl('', [Validators.required, Validators.min(3)]);
 
-
-  loggedIn: boolean = false;
-  constructor(private leagueService: LeagueService, private fb: FormBuilder,
-    private authService: AuthService
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private apollo: Apollo,
+    private router: Router
   ) {
     // auth.handleAuthentication();
   }
 
   matcher = new ShowOnDirtyErrorStateMatcher();
 
-
   ngOnInit() {
-
     this.signInFG = this.fb.group({
       signInNameCtrl: ['', [Validators.required, Validators.min(3)]],
       signInPasswordCtrl: ['', [Validators.required, Validators.min(3)]]
@@ -48,7 +56,6 @@ export class LoginComponent implements OnInit {
       signUpPasswordCtrl: ['', [Validators.required, Validators.min(3)]]
     });
   }
-
 
   btnClick(): void {
     console.log('this.condition', this.condition);
@@ -62,7 +69,24 @@ export class LoginComponent implements OnInit {
     if (this.signInFG.invalid) {
       return;
     } else {
-
+      this.thisDto.myAccountName = accountName;
+      this.thisDto.password = password;
+      this.apollo.query(
+        {
+          query: authenticateQuery,
+          variables: {
+            dto: this.thisDto
+          }
+        })
+        .subscribe((result) => {
+          this.authService.setAccountName(this.thisDto.myAccountName);
+          this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
+          this.router.navigate(['/home']);
+        }, ((err) => {
+          console.log('login error', err);
+          this.onReset();
+        })
+        );
     }
   }
 
@@ -71,16 +95,26 @@ export class LoginComponent implements OnInit {
     if (this.signUpFG.invalid) {
       return;
     } else {
-
+      this.thisDto.myAccountName = accountName;
+      this.thisDto.password = password;
+      this.apollo.mutate(
+        {
+          mutation: register,
+          variables: {
+            dto: this.thisDto
+          }
+        })
+        .subscribe((result) => {
+          this.authService.setAccountName(this.thisDto.myAccountName);
+          this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
+          this.authService.saveUserData
+          this.router.navigate(['/home']);
+        }, ((err) => {
+          console.log('login error', err);
+          this.onReset();
+        })
+        );
     }
-  }
-
-  // Post Authentication
-  saveUserData(accountName, token) {
-    localStorage.setItem(ACCOUNT_NAME, accountName);
-    localStorage.setItem(TOKEN, token);
-    // this.authService.setUserId(id);
-    this.onReset();
   }
 
   onReset() {
