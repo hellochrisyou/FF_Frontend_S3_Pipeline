@@ -32,3 +32,57 @@
         </div>
     </div>
 </div> -->
+<div [ngClass]="condition ? 'container' : 'container right-panel-active'">
+    <div class="form-container sign-up-container">
+        <form [formGroup]="signUpFG">
+            <h1>Create Account</h1>
+            <mat-form-field appearance="outline">
+                <mat-label>Account Name</mat-label>
+                <input matInput [formControl]="signUpNameCtrl" type="text" maxlength="20" [(ngModel)]="signUpName" #signUpNameText />
+                <mat-hint align="start"><strong>Minimum Length: 3 | Maximum Length = 20</strong> </mat-hint>
+                <mat-error *ngIf="!signUpNameCtrl.hasError('required')"> Please enter a valid email address </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password" [formControl]="signUpPasswordCtrl" type="text" minlength="3" maxlength="20" [(ngModel)]="signUpPassword" #signUpPasswordText />
+                <mat-hint align="start"><strong>Minimum Length: 3 | Maximum Length = 20</strong> </mat-hint>
+                <mat-error *ngIf="signUpPasswordCtrl.hasError('min') && !signUpPasswordCtrl.hasError('required')">Minimum Length: 3</mat-error>
+            </mat-form-field>
+            <button (click)="register(signUpName, signUpPassword)">Sign In</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form [formGroup]="signInFG">
+            <h1>Sign in</h1>
+            <br />
+            <mat-form-field appearance="outline">
+                <mat-label>Account Name</mat-label>
+                <input matInput placeholder="Name" [formControl]="signInNameCtrl" type="text" minlength="3" maxlength="20" [(ngModel)]="signInName" #signInNameText />
+                <mat-hint align="start"><strong>Minimum Length: 3 | Maximum Length = 20</strong> </mat-hint>
+                <mat-error *ngIf="signInNameCtrl.hasError('min') && !signInFG.controls.signInNameCtrl.hasError('required')"> Please enter a valid email address </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password" [formControl]="signInPasswordCtrl" type="text" minlength="3" maxlength="20" [(ngModel)]="signInPassword" #signInPasswordText />
+                <mat-hint align="start"><strong>Minimum Length: 3 | Maximum Length = 20</strong> </mat-hint>
+                <mat-error *ngIf="signInPasswordCtrl.hasError('min') && !signInPasswordCtrl.hasError('required')">Minimum Length: 3</mat-error>
+            </mat-form-field>
+            <a href="#">Forgot your password?</a>
+            <button (click)="login(signInName, signInPassword)">Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>If you have an account, please sign in.</p>
+                <button class="ghost" id="signIn" (click)="btnClick()">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Sign up with up if you don't have an account.</p>
+                <button class="ghost" id="signUp" (click)="btnClick()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>

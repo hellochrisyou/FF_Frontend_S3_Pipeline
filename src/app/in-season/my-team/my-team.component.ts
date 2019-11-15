@@ -1,18 +1,18 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ToggleTradeService} from 'src/app/service/emit/toggle-trade.service';
-import {SubmitPopupDialog} from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import {ApiService} from 'src/app/service/api/api.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToggleTradeService } from 'src/app/core/services/emit/toggle-trade.service';
+import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { ApiService } from 'src/app/core/services/api/api.service';
 import * as _globals from '../../shared/var/globals';
 import * as globals from '../../shared/var/enum';
-import {Router} from '@angular/router';
-import {LeagueService} from 'src/app/service/model/league.service';
-import {MatTableDataSource} from '@angular/material/table';
-import {Player} from 'src/app/shared/model/interface.model';
-import {MatSort} from '@angular/material/sort';
-import {MyTeamDialog} from 'src/app/shared/dialog/my-team/my-team.dialog';
-import {CloseDialogService} from 'src/app/service/emit/close-dialog.service';
-import {MatDialog} from '@angular/material/dialog';
-import {AddPlayerService} from 'src/app/service/emit/add-player.service';
+import { Router } from '@angular/router';
+import { LeagueService } from 'src/app/core/services/model/league.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Player } from 'src/app/shared/model/interface.model';
+import { MatSort } from '@angular/material/sort';
+import { MyTeamDialog } from 'src/app/shared/dialog/my-team/my-team.dialog';
+import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
 
 @Component({
   selector: 'app-my-team',
@@ -26,12 +26,12 @@ export class MyTeamComponent implements OnInit {
   inActiveDataSource: MatTableDataSource<Player>;
   playerCol: string[] = _globals.playerCol;
   myPlayer: Player = {
-    name: 'default',
+    playerName: 'default',
     position: 'Defense',
     active: false
   };
-  @ViewChild(MatSort, {static: true}) activeSort: MatSort;
-  @ViewChild(MatSort, {static: true}) inactiveSort: MatSort;
+  @ViewChild(MatSort, { static: true }) activeSort: MatSort;
+  @ViewChild(MatSort, { static: true }) inactiveSort: MatSort;
 
   constructor(
     public dialog: MatDialog,

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {WaiverService} from '../service/concrete/waiver.service';
+import { Component, OnInit } from '@angular/core';
+import { WaiverService } from '../core/services/concrete/waiver.service';
 
 @Component({
   selector: 'app-in-season',
@@ -7,7 +7,7 @@ import {WaiverService} from '../service/concrete/waiver.service';
   styleUrls: ['./in-season.component.scss']
 })
 export class InSeasonComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

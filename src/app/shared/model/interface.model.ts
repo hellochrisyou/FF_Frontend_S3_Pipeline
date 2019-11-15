@@ -1,3 +1,5 @@
+import { Role } from '../var/enum';
+
 export interface QB {
   name: string;
   passingTD: number;
@@ -61,16 +63,16 @@ export interface Kicker {
 
 export interface Account {
   id?: number | string;
-  name: string;
-  admin?: boolean;
-  master?: boolean;
+  accountName: string;
+  password: string;
+  roles: Role[];
   leagues?: League[];
   teams?: Team[];
 }
 
 export interface League {
   id?: number | string;
-  name: string;
+  leagueName: string;
   count?: number;
   current_week?: number;
   start_week?: number;
@@ -81,7 +83,7 @@ export interface League {
 
 export interface Team {
   id?: number | string;
-  name: string;
+  teamName: string;
   wins?: number;
   loss?: number;
   tie?: number;
@@ -95,7 +97,7 @@ export interface Team {
 
 export interface Player {
   id?: number | string;
-  name: string;
+  playerName: string;
   position: string;
   active: boolean;
   isFlex?: boolean;
@@ -112,9 +114,10 @@ export interface WaiverData {
   player: Player;
 }
 
-export interface DTO {
+export interface Dto {
   myLeagueName: string;
   myAccountName: string;
+  password: String;
   myTeamName: string;
   myTeamHelmet: string;
   otherTeamName: string;

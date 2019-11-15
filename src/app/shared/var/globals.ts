@@ -1,5 +1,5 @@
-export const GC_USER_ID: string = 'graphcool-user-id'
-export const GC_AUTH_TOKEN: string = 'graphcool-auth-token'
+export const ACCOUNT_NAME: string = 'Default_Name'
+export const TOKEN: string = 'Default_Token'
 export const qbCol: string[] = [
   'button',
   'name',

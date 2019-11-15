@@ -1,5 +1,5 @@
-import {Injectable, Output, EventEmitter} from '@angular/core';
-import {League, DTO} from 'src/app/shared/model/interface.model';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { League, Dto } from 'src/app/shared/model/interface.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +8,14 @@ export class ToggleTradeService {
   isTrade = true;
   isActive = false;
   otherTeamName = '';
-  @Output() tradePopUp: EventEmitter<DTO> = new EventEmitter();
+  @Output() tradePopUp: EventEmitter<Dto> = new EventEmitter();
 
-  @Output() statusPopUp: EventEmitter<DTO> = new EventEmitter();
+  @Output() statusPopUp: EventEmitter<Dto> = new EventEmitter();
 
-  tradeSubmit(dto: DTO) {
+  tradeSubmit(dto: Dto) {
     this.tradePopUp.emit(dto);
   }
-  toggleSubmit(dto: DTO) {
+  toggleSubmit(dto: Dto) {
     this.statusPopUp.emit(dto);
   }
   setIsTrade(isTrade: boolean): void {

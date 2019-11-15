@@ -1,5 +1,5 @@
-import {Injectable, Output, EventEmitter} from '@angular/core';
-import {League, DTO} from 'src/app/shared/model/interface.model';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { League, Dto } from 'src/app/shared/model/interface.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +9,16 @@ export class AddPlayerService {
   draftName = '';
   waiverName1 = '';
   waiverName2 = '';
-  @Output() draftPopUp: EventEmitter<DTO> = new EventEmitter();
+  @Output() draftPopUp: EventEmitter<Dto> = new EventEmitter();
 
-  @Output() waiverPopUp: EventEmitter<DTO> = new EventEmitter();
+  @Output() waiverPopUp: EventEmitter<Dto> = new EventEmitter();
 
-  addDraftPlayer(dto: DTO, draftName: string) {
+  addDraftPlayer(dto: Dto, draftName: string) {
     this.draftName = draftName;
     this.draftPopUp.emit(dto);
   }
 
-  addWaiverPlayer(dto: DTO) {
+  addWaiverPlayer(dto: Dto) {
     this.waiverPopUp.emit(dto);
   }
   getDraftName(): string {

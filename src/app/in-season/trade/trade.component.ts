@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {LeagueService} from 'src/app/service/model/league.service';
-import {Team, Player} from 'src/app/shared/model/interface.model';
-import {CloseDialogService} from 'src/app/service/emit/close-dialog.service';
-import {MyTeamDialog} from 'src/app/shared/dialog/my-team/my-team.dialog';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { LeagueService } from 'src/app/core/services/model/league.service';
+import { Team, Player } from 'src/app/shared/model/interface.model';
+import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
+import { MyTeamDialog } from 'src/app/shared/dialog/my-team/my-team.dialog';
+import { MatDialog } from '@angular/material/dialog';
 import * as globals from '../../shared/var/enum';
-import {Router} from '@angular/router';
-import {ToggleTradeService} from 'src/app/service/emit/toggle-trade.service';
-import {SubmitPopupDialog} from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import {ApiService} from 'src/app/service/api/api.service';
+import { Router } from '@angular/router';
+import { ToggleTradeService } from 'src/app/core/services/emit/toggle-trade.service';
+import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { ApiService } from 'src/app/core/services/api/api.service';
 
 @Component({
   selector: 'app-trade',
@@ -18,7 +18,7 @@ import {ApiService} from 'src/app/service/api/api.service';
 export class TradeComponent implements OnInit {
   allTeams: Team[];
   otherPlayer: Player = {
-    name: 'default',
+    playerName: 'default',
     position: 'Defense',
     active: false
   };
@@ -29,7 +29,7 @@ export class TradeComponent implements OnInit {
     private toggleTradeService: ToggleTradeService,
     private leagueService: LeagueService,
     public router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.allTeams = this.leagueService.getOtherTeams();
@@ -42,7 +42,7 @@ export class TradeComponent implements OnInit {
   }
 
   OpenDialogOtherTeam(teamIndex, playerIndex) {
-    this.toggleTradeService.setOtherTeamName(this.allTeams[teamIndex].name);
+    this.toggleTradeService.setOtherTeamName(this.allTeams[teamIndex].teamName);
     this.otherPlayer = this.allTeams[teamIndex].players[playerIndex];
     this.toggledPopup();
   }

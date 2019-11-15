@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {SubmitPopupDialog} from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import {AddPlayerService} from '../../service/emit/add-player.service';
-import {ApiService} from 'src/app/service/api/api.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { AddPlayerService } from '../../core/services/emit/add-player.service';
+import { ApiService } from 'src/app/core/services/api/api.service';
 import * as globals from '../../shared/var/enum';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-draft-teams',

@@ -1,12 +1,12 @@
-import {ApiService} from '../service/api/api.service';
-import {LeagueService} from '../service/model/league.service';
-import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
-import {League, DTO} from 'src/app/shared/model/interface.model';
+import { ApiService } from '../core/services/api/api.service';
+import { LeagueService } from '../core/services/model/league.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Dto } from 'src/app/shared/model/interface.model';
 import * as globals from '../shared/var/enum';
-import {SubmitPopupDialog} from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import {MatDialog} from '@angular/material/dialog';
-import {Router} from '@angular/router';
+import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-team',
@@ -37,19 +37,20 @@ export class CreateTeamComponent implements OnInit {
   leagueFormCtrl = new FormControl('', [Validators.required]);
   teamFormGroup: FormGroup;
 
-  dto: DTO = {
+  dto: Dto = {
     myLeagueName: '',
     myAccountName: '',
+    password: '',
     myTeamName: '',
     myTeamHelmet: '',
     otherTeamName: '',
     player1: {
-      name: '',
+      playerName: '',
       position: '',
       active: false
     },
     player2: {
-      name: '',
+      playerName: '',
       position: '',
       active: false
     }
@@ -61,7 +62,7 @@ export class CreateTeamComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: ApiService,
     public router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.leagues = this.leagueService.getAllLeagueNames();
@@ -77,11 +78,10 @@ export class CreateTeamComponent implements OnInit {
     if (this.leagueService.findTeamNameExist(teamName)) {
       this.duplicatePopup2(teamName);
     } else {
-      this.dto.myAccountName = this.leagueService.getMyAccount().name;
+      this.dto.myAccountName = this.leagueService.getMyAccount().accountName;
       this.dto.myLeagueName = leagueName;
       this.dto.myTeamName = teamName;
       this.dto.myTeamHelmet = helmet2;
-      console.log(this.dto);
       this.api.httpPost(globals.ApiUrls.createTeam, this.dto).subscribe(myAccount => {
         this.leagueService.updateMyAccount(myAccount);
         this.createdPopup2();
@@ -112,7 +112,7 @@ export class CreateTeamComponent implements OnInit {
         text: 'Please enter a different Team name.'
       }
     });
-    dialogRef.afterClosed().subscribe(x => {});
+    dialogRef.afterClosed().subscribe(x => { });
   }
 
   assignHelmetValues(): void {

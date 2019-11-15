@@ -1,14 +1,14 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {LeagueService} from 'src/app/service/model/league.service';
-import {DraftService} from 'src/app/service/concrete/draft.service';
-import {SubmitPopupDialog} from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import {Router} from '@angular/router';
-import {WaiverService} from 'src/app/service/concrete/waiver.service';
-import {AddPlayerService} from 'src/app/service/emit/add-player.service';
-import {ApiService} from 'src/app/service/api/api.service';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { LeagueService } from 'src/app/core/services/model/league.service';
+import { DraftService } from 'src/app/core/services/concrete/draft.service';
+import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { Router } from '@angular/router';
+import { WaiverService } from 'src/app/core/services/concrete/waiver.service';
+import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
+import { ApiService } from 'src/app/core/services/api/api.service';
 import * as globals from '../../shared/var/enum';
-import {MatDialog} from '@angular/material/dialog';
-import {CloseDialogService} from 'src/app/service/emit/close-dialog.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
 
 @Component({
   selector: 'app-waiver',

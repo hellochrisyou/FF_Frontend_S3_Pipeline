@@ -1,9 +1,9 @@
-import { ApiService } from '../service/api/api.service';
+import { ApiService } from '../core/services/api/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import { League } from 'src/app/shared/model/interface.model';
 import { Account, Team } from '../shared/model/interface.model';
-import { LeagueService } from 'src/app/service/model/league.service';
+import { LeagueService } from 'src/app/core/services/model/league.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
 import { Router } from '@angular/router';
@@ -25,16 +25,18 @@ export class CreateLeagueComponent implements OnInit {
   myGroup: FormGroup;
 
   myLeague: League = {
-    name: '',
+    leagueName: '',
     teams: []
   };
   myAccount: Account = {
-    name: '',
+    accountName: '',
+    password: '',
+    roles: [],
     leagues: [],
     teams: []
   };
   draftTeam: Team = {
-    name: '',
+    teamName: '',
     players: []
   };
 
@@ -65,19 +67,19 @@ export class CreateLeagueComponent implements OnInit {
 
 
   createLeague(leagueName, helmet): void {
-    console.log('leagueNmae', leagueName);
-    console.log('helmet', helmet);
-    if (this.leagueService.findLeagueNameExist(leagueName)) {
-      this.duplicatePopup(leagueName);
-    } else {
-      this.myLeague.name = leagueName;
-      console.log('myleague', this.myLeague);
-      this.api.httpPost(globals.ApiUrls.createLeague, this.myLeague).subscribe(account => {
-        console.log('returned league', account);
-        this.leagueService.updateMyAccount(account);
-        this.createdPopup();
-      });
-    }
+    // console.log('leagueNmae', leagueName);
+    // console.log('helmet', helmet);
+    // if (this.leagueService.findLeagueNameExist(leagueName)) {
+    //   this.duplicatePopup(leagueName);
+    // } else {
+    //   this.myLeague.name = leagueName;
+    //   console.log('myleague', this.myLeague);
+    //   this.api.httpPost(globals.ApiUrls.createLeague, this.myLeague).subscribe(account => {
+    //     console.log('returned league', account);
+    //     this.leagueService.updateMyAccount(account);
+    //     this.createdPopup();
+    //   });
+    // }
   }
   createdPopup(): void {
     const dialogRef = this.dialog.open(SubmitPopupDialog, {

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 // import {AuthService} from '../core/auth/auth.service';
-import { LeagueService } from '../service/model/league.service';
-import { ApiService } from '../service/api/api.service';
+import { LeagueService } from '../core/services/model/league.service';
+import { ApiService } from '../core/services/api/api.service';
 import * as globals from '../shared/var/enum';
 import { League, LeagueMenu } from '../shared/model/interface.model';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';

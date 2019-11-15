@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Matchup} from 'src/app/shared/model/interface.model';
-import {LeagueService} from 'src/app/service/model/league.service';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
+import { Matchup } from 'src/app/shared/model/interface.model';
+import { LeagueService } from 'src/app/core/services/model/league.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-matchup',

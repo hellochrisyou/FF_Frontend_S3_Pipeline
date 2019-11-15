@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {QB, RB, WR, TE, DEF, Kicker} from '../../shared/model/interface.model';
+import { Injectable } from '@angular/core';
+import { QB, RB, WR, TE, DEF, Kicker } from '../../../shared/model/interface.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,16 +40,16 @@ export class CalculatePointsService {
     def.pointsAllowed === 0
       ? (this.pointsAllowed = 10)
       : def.pointsAllowed > 0 && def.pointsAllowed < 7
-      ? (this.pointsAllowed = 7)
-      : def.pointsAllowed > 6 && def.pointsAllowed < 14
-      ? (this.pointsAllowed = 4)
-      : def.pointsAllowed > 13 && def.pointsAllowed < 21
-      ? (this.pointsAllowed = 1)
-      : def.pointsAllowed > 20 && def.pointsAllowed < 28
-      ? (this.pointsAllowed = 0)
-      : def.pointsAllowed > 27 && def.pointsAllowed < 35
-      ? (this.pointsAllowed = -1)
-      : (this.pointsAllowed = -4);
+        ? (this.pointsAllowed = 7)
+        : def.pointsAllowed > 6 && def.pointsAllowed < 14
+          ? (this.pointsAllowed = 4)
+          : def.pointsAllowed > 13 && def.pointsAllowed < 21
+            ? (this.pointsAllowed = 1)
+            : def.pointsAllowed > 20 && def.pointsAllowed < 28
+              ? (this.pointsAllowed = 0)
+              : def.pointsAllowed > 27 && def.pointsAllowed < 35
+                ? (this.pointsAllowed = -1)
+                : (this.pointsAllowed = -4);
 
     // tslint:disable-next-line:max-line-length
     this.fantasyPoints =

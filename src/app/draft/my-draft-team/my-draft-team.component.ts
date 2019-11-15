@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {LeagueService} from 'src/app/service/model/league.service';
-import {Player} from 'src/app/shared/model/interface.model';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { LeagueService } from 'src/app/core/services/model/league.service';
+import { Player } from 'src/app/shared/model/interface.model';
 
 @Component({
   selector: 'app-my-draft-team',
@@ -15,9 +15,9 @@ export class MyDraftTeamComponent implements OnInit {
   myPlayers: Player[] = [];
   dataSource = new MatTableDataSource(this.myPlayers);
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(public leagueService: LeagueService) {}
+  constructor(public leagueService: LeagueService) { }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;

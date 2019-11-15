@@ -10,3 +10,8 @@ export const enum ApiUrls {
   lastWeek = 'https://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&week=1&season=2018&position=',
   lastSeason = 'https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=2017&position='
 }
+
+export enum Role {
+  ROLE_ADMIN,
+  ROLE_CLIENT
+}

@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Player} from 'src/app/shared/model/interface.model';
+import { Injectable } from '@angular/core';
+import { Player } from 'src/app/shared/model/interface.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,12 @@ export class FilterService {
     this.resultArray = [];
     for (const tmp of arraySet) {
       for (const myPlayer of this.myPlayers) {
-        if (myPlayer.name === tmp.name) {
+        if (myPlayer.playerName === tmp.name) {
           continue;
         }
       }
       for (const otherPlayer of this.otherPlayers) {
-        if (otherPlayer.name === tmp.name) {
+        if (otherPlayer.playerName === tmp.name) {
           continue;
         }
       }
@@ -29,10 +29,10 @@ export class FilterService {
     return this.resultArray;
   }
 
-  constructor() {}
+  constructor() { }
 
   setPlayers(players: Player[], otherPlayers: Player[]): void {
-    // Set My Players
+    // Set My Players 
     this.myPlayers = players;
     // Set Other Players
     this.otherPlayers = otherPlayers;

@@ -1,17 +1,17 @@
-import {Component, ViewChild, EventEmitter, AfterViewInit, OnInit, DoCheck} from '@angular/core';
+import { Component, ViewChild, EventEmitter, AfterViewInit, OnInit, DoCheck } from '@angular/core';
 import * as globals from '../../var/globals';
-import {DEF, Player} from '../../model/interface.model';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {DraftService} from 'src/app/service/concrete/draft.service';
-import {AddPlayerService} from 'src/app/service/emit/add-player.service';
-import {LeagueService} from 'src/app/service/model/league.service';
-import {WaiverService} from 'src/app/service/concrete/waiver.service';
-import {MatDialog} from '@angular/material/dialog';
-import {CloseDialogService} from 'src/app/service/emit/close-dialog.service';
-import {MyTeamDialog} from '../../dialog/my-team/my-team.dialog';
-import {NotifyService} from 'src/app/service/emit/notify.service';
+import { DEF, Player } from '../../model/interface.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { DraftService } from 'src/app/core/services/concrete/draft.service';
+import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
+import { LeagueService } from 'src/app/core/services/model/league.service';
+import { WaiverService } from 'src/app/core/services/concrete/waiver.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
+import { MyTeamDialog } from '../../dialog/my-team/my-team.dialog';
+import { NotifyService } from 'src/app/core/services/emit/notify.service';
 
 @Component({
   selector: 'app-defense-table',
@@ -22,14 +22,14 @@ export class DefenseTableComponent implements OnInit {
   defCol: string[] = globals.defCol;
   defenseArray: DEF[];
   myPlayer: Player = {
-    name: 'default',
+    playerName: 'default',
     position: 'Defense',
     active: false
   };
   isWaiver: boolean;
   dataSource: MatTableDataSource<DEF>;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
     public dialog: MatDialog,
@@ -37,7 +37,7 @@ export class DefenseTableComponent implements OnInit {
     private addPlayerService: AddPlayerService,
     private leagueService: LeagueService,
     private notifyService: NotifyService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.notifyService.defDraftComplete.subscribe(defenseArray => {
@@ -64,13 +64,13 @@ export class DefenseTableComponent implements OnInit {
   addDefense(index: number): void {
     const name = this.defenseArray[index].name;
     this.defenseArray.splice(index, 1); //Do I need this?
-    this.myPlayer.name = name;
+    this.myPlayer.playerName = name;
     this.myPlayer.position = 'DEF';
     this.myPlayer.fantasy_points = this.defenseArray[index].fantasy_points;
     if (this.isWaiver) {
       this.myTeamPopup(index);
     } else {
-      this.addPlayerService.addDraftPlayer(this.leagueService.updateDTO(this.myPlayer), name);
+      this.addPlayerService.addDraftPlayer(this.leagueService.updateDto(this.myPlayer), name);
     }
   }
   myTeamPopup(index): void {

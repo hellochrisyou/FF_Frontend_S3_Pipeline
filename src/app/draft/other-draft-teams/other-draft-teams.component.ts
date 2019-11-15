@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Team} from 'src/app/shared/model/interface.model';
-import {LeagueService} from 'src/app/service/model/league.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Team } from 'src/app/shared/model/interface.model';
+import { LeagueService } from 'src/app/core/services/model/league.service';
 
 @Component({
   selector: 'app-other-draft-teams',
@@ -10,7 +10,7 @@ import {LeagueService} from 'src/app/service/model/league.service';
 export class OtherDraftTeamsComponent implements OnInit {
   otherTeams: Team[] = [];
 
-  constructor(private leagueService: LeagueService) {}
+  constructor(private leagueService: LeagueService) { }
 
   ngOnInit() {
     this.otherTeams = this.leagueService.getOtherTeams();
