@@ -1,7 +1,12 @@
 import gql from 'graphql-tag';
 
-export const authenticateQuery = gql`
-    query authenticateAccount($dto: Dto) {
-        account(dto: $dto)
+export const authenticate = gql`
+     authenticate($dto: Dto) {
+    leagues(dto: $dto){
+        leagueName
+        teams {
+            teamName
+        }
     }
-    `;
+}
+`;

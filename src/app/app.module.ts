@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApolloModule, Apollo } from "apollo-angular";
 import { HttpLink, HttpLinkModule } from "apollo-angular-link-http";
@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import { GraphQLModule } from './graphql.module';
+import { GraphQLInterceptor } from './core/interceptor-dont-need/GraphQL.Interceptor';
 
 
 @NgModule({
@@ -47,9 +48,11 @@ import { GraphQLModule } from './graphql.module';
     // {
     //   provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher
     // },    
-    // {
-    //   provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true
-    // }
+    [{
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: GraphQLInterceptor,
+    }],
   ],
   bootstrap: [AppComponent]
 })

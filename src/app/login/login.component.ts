@@ -8,8 +8,9 @@ import { ACCOUNT_NAME, TOKEN } from '../shared/var/globals';
 import { Dto } from '../shared/model/interface.model';
 import { Apollo } from 'apollo-angular';
 import { register } from '../shared/mutation/accountMutations';
-import { authenticateQuery } from '../shared/query/accountQuery';
 import { Router } from '@angular/router';
+import { AuthenticateService } from '../core/services/query/authenticate.service';
+import { doTypesOverlap } from 'graphql';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +39,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private apollo: Apollo,
-    private router: Router
+    private router: Router,
+    private authenticateService: AuthenticateService
   ) {
     // auth.handleAuthentication();
   }
@@ -58,27 +60,25 @@ export class LoginComponent implements OnInit {
   }
 
   btnClick(): void {
-    console.log('this.condition', this.condition);
-    console.log('SignUp');
     this.condition = !this.condition;
-    console.log('this.condition', this.condition);
   }
 
   login(accountName: string, password: string) {
-    console.log('accountname', accountName);
-
-    this.thisDto.myAccountName = accountName;
-    this.thisDto.password = password;
-    this.apollo.query(
+    console.log('login');
+    let thisDto: Dto = {
+      myAccountName: accountName,
+      password: password
+    };
+    const variables = thisDto;
+    this.authenticateService.mutate(
       {
-        query: authenticateQuery,
-        variables: {
-          dto: this.thisDto
-        }
+        mutation: AuthenticateService,
+        variables
       })
       .subscribe((result) => {
+        console.log('reuslt', result);
         this.authService.setAccountName(this.thisDto.myAccountName);
-        this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
+        this.authService.saveUserData(this.thisDto.myAccountName, result.data.token);
         this.router.navigate(['/home']);
       }, ((err) => {
         console.log('login error', err);

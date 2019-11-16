@@ -6,8 +6,8 @@ query getLeague($dto: Dto){
 }
 `;
 
-export const leaguesQuery = gql`
-query allNames{
+export const getAllLeagues = gql`
+query getAllLeagues{
     leagues {
         leagueName
         teams {
