@@ -1,87 +1,60 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+// Apollo
+import { ApolloModule, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloLink, GraphQLRequest } from 'apollo-link';
-import { HttpClientModule } from '@angular/common/http';
-import { ApolloModule, Apollo, APOLLO_OPTIONS } from 'apollo-angular';
-import { setContext } from "apollo-link-context";
-import { onError } from 'apollo-link-error'
-import { AuthService } from './core';
-import ApolloLinkTimeout from 'apollo-link-timeout';
+import { onError } from 'apollo-link-error';
+import { ApolloLink, from } from 'apollo-link';
 
-const REQUEST_TIMEOUT = 30000;
-
-
-const uri = 'http://localhost:8080/graphql';
-
-export function provideApollo(httpLink: HttpLink, authService: AuthService) {
-    const token = localStorage.getItem('token');
-
-    let tmpHeaders = new Headers();
-    tmpHeaders.append('Accept', 'application/json');
-    tmpHeaders.append('Content-Type', 'application/json');
-    tmpHeaders.append('Access-Control-Allow-Headers', '*');
-    tmpHeaders.append('Access-Control-Allow-Origin', '*');
-    tmpHeaders.append('Authorization', 'Bearer ' + token);
-
-    const basic = setContext((operation, context) => ({
-        headers: tmpHeaders
-    }));
-
-    // Get the authentication token from local storage if it exists
-    // const auth = setContext((operation, context) => ({
-    //     headers: {
-    //         Authorization: `Bearer ${token}`
-    //     }
-    // }));
-
-    const passLink = ApolloLink.from([basic, httpLink.create({ uri, method: "GET", })]);
-
-    // const apolloErrorLink: ApolloLink = onError(({ graphQLErrors, networkError }) => {
-    //     if (graphQLErrors) {
-    //         graphQLErrors.map(({ message, locations, path }) =>
-    //             console.log(`GraphQL error: Message: ${message} Location: ${JSON.stringify(locations)} Path: ${path}`)
-    //         );
-    //     }
-    //     if (networkError) {
-    //         console.log(`GraphQL network error:`, networkError);
-    //     }
-    // });
-
-    // Logout Link
-    // const logoutLink = onError(({ networkError }) => {
-    //     // Reference: https://github.com/apollographql/apollo-link/issues/300
-    //     if (
-    //         networkError &&
-    //         'statusCode' in networkError &&
-    //         networkError.statusCode === 401
-    //     ) authService.logout();
-    // });
-
-    return {
-        link: uri,
-        cache: new InMemoryCache(),
-        fetchOptions: {
-            mode: 'no-cors',
-        },
-        headers: tmpHeaders
-    };
-}
 
 @NgModule({
     exports: [
         HttpClientModule,
         ApolloModule,
         HttpLinkModule
-    ],
-    providers: [
-        {
-            provide: APOLLO_OPTIONS,
-            useFactory: provideApollo,
-            deps: [
-                HttpLink
-            ],
-        },
-    ],
+    ]
 })
-export class GraphQLModule { }
+export class GraphQLModule {
+    constructor(
+        apollo: Apollo,
+        httpLink: HttpLink,
+    ) {
+        const http = httpLink.create({ uri: 'http://localhost:8080/graphql' });
+
+        // const logoutLink = onError(({ graphQLErrors, networkError }) => {
+        //     if (graphQLErrors)
+        //         graphQLErrors.map(({ message, locations, path }) =>
+        //             console.log(
+        //                 `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+        //             ),
+        //         );
+
+        //     if (networkError) console.log(`[Network error]: ${networkError}`);
+        // });
+
+        const authMiddleware = new ApolloLink((operation, forward) => {
+            // add the authorization to the headers
+            operation.setContext({
+                headers: new HttpHeaders().set('Authorization', localStorage.getItem('token') || null)
+            });
+
+            return forward(operation);
+        });
+
+        const otherMiddleware = new ApolloLink((operation, forward) => {
+            // add the authorization to the headers
+            // we assume `headers` as a defined instance of HttpHeaders
+            operation.setContext(({ headers }) => ({
+                headers: headers.append('Access-Control-Allow-Origin', '*')
+            }));
+
+            return forward(operation);
+        })
+        apollo.create({
+            link: from([authMiddleware, otherMiddleware, http]),
+            cache: new InMemoryCache()
+        });
+
+    }
+}
