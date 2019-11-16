@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 // import { GC_USER_ID, GC_AUTH_TOKEN } from '../shared/var/globals';
 import { AuthService } from '../core/services/auth.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { LeagueService } from '../core/services/model/league.service';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { ACCOUNT_NAME, TOKEN } from '../shared/var/globals';
 import { Dto } from '../shared/model/interface.model';
-import { Apollo } from 'apollo-angular';
 import { register } from '../shared/mutation/accountMutations';
 import { Router } from '@angular/router';
 import { AuthenticateService } from '../core/services/query/authenticate.service';
-import { doTypesOverlap } from 'graphql';
+import { RegisterService } from '../core/services/mutation/register.service';
 
 @Component({
   selector: 'app-login',
@@ -38,9 +35,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private apollo: Apollo,
     private router: Router,
-    private authenticateService: AuthenticateService
+    private authenticateService: AuthenticateService,
+    private registerService: RegisterService
   ) {
     // auth.handleAuthentication();
   }
@@ -64,7 +61,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(accountName: string, password: string) {
-    console.log('login');
     let thisDto: Dto = {
       myAccountName: accountName,
       password: password
@@ -88,19 +84,19 @@ export class LoginComponent implements OnInit {
   }
 
   register(accountName: string, password: string) {
-    this.thisDto.myAccountName = accountName;
-    this.thisDto.password = password;
-    this.apollo.mutate(
+    let thisDto: Dto = {
+      myAccountName: accountName,
+      password: password
+    };
+    const variables = thisDto;
+    this.registerService.mutate(
       {
-        mutation: register,
-        variables: {
-          dto: this.thisDto
-        }
+        mutation: RegisterService,
+        variables
       })
       .subscribe((result) => {
         this.authService.setAccountName(this.thisDto.myAccountName);
-        this.authService.saveUserData(this.thisDto.myAccountName, result.data as string);
-        this.authService.saveUserData
+        this.authService.saveUserData(this.thisDto.myAccountName, result.data.token);
         this.router.navigate(['/home']);
       }, ((err) => {
         console.log('login error', err);

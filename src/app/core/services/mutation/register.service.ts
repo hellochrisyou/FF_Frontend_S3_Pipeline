@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 export class RegisterService extends Mutation<tokenResponse> {
 
   document = gql`
-  mutation Register($dto: Dto!) {
+  mutation RegisterService($dto: Dto!) {
     register(dto: $dto) {
       token
     }

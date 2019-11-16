@@ -5,7 +5,10 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
-    "test": "ng test",
+    "build-dev": "ng build --configuration=dev --stats-json --prod=true",
+    "build-report": "ng build --prod=true --stats-json && npm run bundle-analysis",
+    "bundle-analysis": "webpack-bundle-analyzer dist/trucking/stats.json",
+    "test": "ng test --codeCoverage=true --progress=true",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -64,6 +67,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "typescript": "~3.4.3",
+    "webpack-bundle-analyzer": "^3.5.2"
   }
 }

@@ -13,7 +13,7 @@ import { CoreModule } from './core/core.module';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import { GraphQLModule } from './graphql.module';
-import { GraphQLInterceptor } from './core/interceptor-dont-need/GraphQL.Interceptor';
+import { GraphQLInterceptor } from './core/graphQL-interceptor/GraphQL.Interceptor';
 
 
 @NgModule({
