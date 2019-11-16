@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { ApiService } from '@core';
 import { LeagueService } from '@core';
 import { HomeComponent } from './home.component';
+import * as global from '@shared/var/globals'
+
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;

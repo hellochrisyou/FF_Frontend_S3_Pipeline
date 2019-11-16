@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { LeagueService } from '@core';
 import { MyDraftTeamComponent } from '@draft';
+import * as global from '@shared/var/globals'
 describe('MyDraftTeamComponent', () => {
   let component: MyDraftTeamComponent;
   let fixture: ComponentFixture<MyDraftTeamComponent>;

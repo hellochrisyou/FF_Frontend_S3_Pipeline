@@ -3,6 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AddPlayerService, LeagueService, CloseDialogService, NotifyService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { WrTableComponent } from '@shared/component';
+import * as global from '@shared/var/globals'
+
 describe('WrTableComponent', () => {
   let component: WrTableComponent;
   let fixture: ComponentFixture<WrTableComponent>;

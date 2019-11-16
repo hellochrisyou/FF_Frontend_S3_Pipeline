@@ -6,6 +6,8 @@ import { CloseDialogService } from '@core';
 import { NotifyService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { KickerTableComponent } from './kicker-table.component';
+import * as global from '@shared/var/globals'
+
 describe('KickerTableComponent', () => {
   let component: KickerTableComponent;
   let fixture: ComponentFixture<KickerTableComponent>;

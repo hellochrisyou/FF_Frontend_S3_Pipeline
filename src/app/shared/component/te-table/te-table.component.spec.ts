@@ -3,6 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CloseDialogService, NotifyService, LeagueService, AddPlayerService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { TeTableComponent } from '@shared/component';
+import * as global from '@shared/var/globals'
+
 describe('TeTableComponent', () => {
   let component: TeTableComponent;
   let fixture: ComponentFixture<TeTableComponent>;

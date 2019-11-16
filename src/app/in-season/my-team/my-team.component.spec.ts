@@ -4,6 +4,8 @@ import { AddPlayerService, ToggleTradeService, CloseDialogService, LeagueService
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MyTeamComponent } from '@inSeason';
+import * as global from '@shared/var/globals'
+
 describe('MyTeamComponent', () => {
   let component: MyTeamComponent;
   let fixture: ComponentFixture<MyTeamComponent>;
@@ -52,7 +54,7 @@ describe('MyTeamComponent', () => {
     expect(component).toBeTruthy();
   });
   it('playerCol defaults to: _globals.playerCol', () => {
-    expect(component.playerCol).toEqual(_globals.playerCol);
+    expect(component.playerCol).toEqual(global.playerCol);
   });
   describe('ngOnInit', () => {
     it('makes expected calls', () => {

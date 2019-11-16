@@ -3,6 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CloseDialogService, NotifyService, AddPlayerService, LeagueService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { DefenseTableComponent } from './defense-table.component';
+import * as global from '@shared/var/globals'
+
 describe('DefenseTableComponent', () => {
   let component: DefenseTableComponent;
   let fixture: ComponentFixture<DefenseTableComponent>;
@@ -38,6 +40,6 @@ describe('DefenseTableComponent', () => {
     expect(component).toBeTruthy();
   });
   it('defCol defaults to: globals.defCol', () => {
-    expect(component.defCol).toEqual(globals.defCol);
+    expect(component.defCol).toEqual(global.defCol);
   });
 });

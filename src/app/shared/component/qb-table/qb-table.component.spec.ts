@@ -3,6 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CloseDialogService, NotifyService, AddPlayerService, LeagueService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { QbTableComponent } from './qb-table.component';
+import * as global from '@shared/var/globals'
+
 describe('QbTableComponent', () => {
   let component: QbTableComponent;
   let fixture: ComponentFixture<QbTableComponent>;

@@ -3,13 +3,20 @@
   "configurations": [
     {
       "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
       "request": "attach",
       "name": "Attach Karma Chrome",
       "address": "localhost",
-      "port": 9999,
+      "port": 9876,
       "pathMapping": {
         "/": "${workspaceRoot}/",
-        "/base/": "${workspaceRoot}/"
+        "/base/": "${workspaceRoot}/",
       }
     }
   ]

@@ -21,7 +21,7 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
-    port: 9999,
+    port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
@@ -34,16 +34,9 @@ module.exports = function (config) {
     //     restartOnFileChange: true
     //   })
     // };
-    browsers: [
-      'ChromeDebugging'
-    ],
+    browsers: ['Chrome'],
 
-    customLaunchers: {
-      ChromeDebugging: {
-        base: 'Chrome',
-        flags: ['--remote-debugging-port=9999']
-      }
-    }
+
     // browsers: ['Chrome'],
     //   singleRun: false,
     //   restartOnFileChange: true

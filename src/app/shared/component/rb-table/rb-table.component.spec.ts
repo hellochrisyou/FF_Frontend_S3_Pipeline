@@ -3,6 +3,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CloseDialogService, NotifyService, AddPlayerService, LeagueService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { RbTableComponent } from '@shared/component';
+import * as global from '@shared/var/globals'
+
+
 describe('RbTableComponent', () => {
   let component: RbTableComponent;
   let fixture: ComponentFixture<RbTableComponent>;
