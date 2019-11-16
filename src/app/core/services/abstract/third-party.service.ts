@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {QB, RB, WR, TE, DEF, Kicker} from 'src/app/shared/model/interface.model';
-import {HttpClient} from '@angular/common/http';
-import {StatsFunctionService} from '../logic/stats-function.service';
-import {ApiService} from '../api/api.service';
-import {FilterService} from '../logic/filter.service';
+import { QB, RB, WR, TE, DEF, Kicker } from '@shared/model/interface.model';
+import { HttpClient } from '@angular/common/http';
+import { StatsFunctionService } from '../logic/stats-function.service';
+import { ApiService } from '../api/api.service';
+import { FilterService } from '../logic/filter.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export abstract class ThirdPartyService {
   defArray: DEF[] = [];
   kArray: Kicker[] = [];
 
-  constructor() {}
+  constructor() { }
 
   abstract setLastSeasonQB(): void;
   abstract setLastSeasonRB(): void;

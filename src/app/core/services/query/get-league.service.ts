@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import gql from 'graphql-tag';
 import { Query, Mutation } from 'apollo-angular';
-import { LeagueOutput } from 'src/app/shared/var/type';
+import { LeagueOutput } from '@shared/var/type';
 
 @Injectable({
   providedIn: 'root'

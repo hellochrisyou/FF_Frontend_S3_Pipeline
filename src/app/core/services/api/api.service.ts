@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
-import { League } from 'src/app/shared/model/interface.model';
+import { League } from '@shared/model/interface.model';
 // import { ErrorHandlerGlobal } from '../error-handler';
 import { throwError } from 'rxjs';
 const httpOptions = {
@@ -14,7 +14,7 @@ const httpOptions = {
 export class ApiService {
   bodyParam = {};
   // errorHandlerGlobal = new ErrorHandlerGlobal();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   extractData(res: Response) {
     const body = res;

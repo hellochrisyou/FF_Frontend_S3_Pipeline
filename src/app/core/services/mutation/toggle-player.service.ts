@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AccountOutput } from 'src/app/shared/var/type';
+import { AccountOutput } from '@shared/var/type';
 import { Mutation } from 'apollo-angular';
 import gql from 'graphql-tag';
 @Injectable({

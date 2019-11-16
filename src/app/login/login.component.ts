@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import { GC_USER_ID, GC_AUTH_TOKEN } from '../shared/var/globals';
-import { AuthService } from '../core/services/auth.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { Dto } from '../shared/model/interface.model';
-import { register } from '../shared/mutation/accountMutations';
 import { Router } from '@angular/router';
-import { AuthenticateService } from '../core/services/query/authenticate.service';
-import { RegisterService } from '../core/services/mutation/register.service';
+import { AuthenticateService, AuthService, RegisterService } from '@core/index';
+import { Dto } from '@shared/model/interface.model';
 
 @Component({
   selector: 'app-login',

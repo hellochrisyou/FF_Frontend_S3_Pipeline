@@ -4,15 +4,9 @@ import { DEF, Player } from '../../model/interface.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { DraftService } from 'src/app/core/services/concrete/draft.service';
-import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
-import { LeagueService } from 'src/app/core/services/model/league.service';
-import { WaiverService } from 'src/app/core/services/concrete/waiver.service';
+import { LeagueService, AddPlayerService, CloseDialogService, NotifyService } from '@core/index';
 import { MatDialog } from '@angular/material/dialog';
-import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
 import { MyTeamDialog } from '../../dialog/my-team/my-team.dialog';
-import { NotifyService } from 'src/app/core/services/emit/notify.service';
-
 @Component({
   selector: 'app-defense-table',
   templateUrl: './defense-table.component.html',

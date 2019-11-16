@@ -4,7 +4,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { TOKEN } from 'src/app/shared/var/globals';
+import { TOKEN } from '@shared/var/globals';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

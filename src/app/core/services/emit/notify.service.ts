@@ -1,5 +1,5 @@
 import {Injectable, Output, EventEmitter} from '@angular/core';
-import {QB, RB, WR, TE, DEF, Kicker} from 'src/app/shared/model/interface.model';
+import {QB, RB, WR, TE, DEF, Kicker} from '@shared/model/interface.model';
 
 @Injectable({
   providedIn: 'root'

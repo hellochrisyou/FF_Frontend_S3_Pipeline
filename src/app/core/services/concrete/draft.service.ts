@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StatsFunctionService } from '../logic/stats-function.service';
 import { ApiService } from '../api/api.service';
 import { FilterService } from '../logic/filter.service';
-import { QB, RB, WR, TE, DEF, Kicker, Player } from 'src/app/shared/model/interface.model';
+import { QB, RB, WR, TE, DEF, Kicker, Player } from '@shared/model/interface.model';
 import { HttpClient } from '@angular/common/http';
 import * as globals from '../../../shared/var/enum';
 import { ThirdPartyService } from '../abstract/third-party.service';

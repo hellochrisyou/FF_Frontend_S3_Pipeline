@@ -1,17 +1,12 @@
-import { Component, ViewChild, Input, Output, EventEmitter, AfterViewInit, OnInit, DoCheck } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import * as global from '../../var/globals';
-import { RB, Player, WaiverData } from '../../model/interface.model';
+import { RB, Player } from '../../model/interface.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { DraftService } from 'src/app/core/services/concrete/draft.service';
-import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
-import { LeagueService } from 'src/app/core/services/model/league.service';
-import { WaiverService } from 'src/app/core/services/concrete/waiver.service';
+import { LeagueService, AddPlayerService, CloseDialogService, NotifyService } from '@core/index';
 import { MatDialog } from '@angular/material/dialog';
 import { MyTeamDialog } from '../../dialog/my-team/my-team.dialog';
-import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
-import { NotifyService } from 'src/app/core/services/emit/notify.service';
 
 @Component({
   selector: 'app-rb-table',

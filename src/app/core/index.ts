@@ -11,8 +11,42 @@ import { FilterService } from './services/logic/filter.service';
 import { SeasonWeekService } from './services/logic/season-week.service';
 import { StatsFunctionService } from './services/logic/stats-function.service';
 import { LeagueService } from './services/model/league.service';
+import { AddPlayerMutateService } from './services/mutation/add-player-mutate.service';
+import { AddWaiverService } from './services/mutation/add-waiver.service';
+import { CreateLeagueService } from './services/mutation/create-league.service';
+import { CreateTeamService } from './services/mutation/create-team.service';
+import { RegisterService } from './services/mutation/register.service';
+import { TogglePlayerService } from './services/mutation/toggle-player.service';
+import { TradeTeamService } from './services/mutation/trade-team.service';
+import { AuthenticateService } from './services/query/authenticate.service';
+import { GetAllLeaguesService } from './services/query/get-all-leagues.service';
+import { GetLeagueService } from './services/query/get-league.service';
 
-export const services: any[] = [ThirdPartyService, ApiService, DraftService, WaiverService, AddPlayerService, CloseDialogService, NotifyService, ToggleTradeService, CalculatePointsService, FilterService, SeasonWeekService, StatsFunctionService, LeagueService];
+export const services: any[] = [ 
+    AddPlayerMutateService, 
+    AddWaiverService, 
+    CreateLeagueService, 
+    CreateTeamService, 
+    RegisterService, 
+    TogglePlayerService, 
+    TradeTeamService, 
+    AuthenticateService,
+    GetAllLeaguesService, 
+    GetLeagueService, 
+    ThirdPartyService, 
+    ApiService, 
+    DraftService, 
+    WaiverService, 
+    AddPlayerService, 
+    CloseDialogService, 
+    NotifyService, 
+    ToggleTradeService, 
+    CalculatePointsService, 
+    FilterService,
+    SeasonWeekService, 
+    StatsFunctionService, 
+    LeagueService
+];
 
 export * from './services/abstract/third-party.service';
 export * from './services/api/api.service';
@@ -28,3 +62,13 @@ export * from './services/logic/filter.service';
 export * from './services/logic/season-week.service';
 export * from './services/logic/stats-function.service';
 export * from './services/model/league.service';
+export * from './services/mutation/add-player-mutate.service';
+export * from './services/mutation/add-waiver.service';
+export * from './services/mutation/create-league.service';
+export * from './services/mutation/create-team.service';
+export * from './services/mutation/register.service';
+export * from './services/mutation/toggle-player.service';
+export * from './services/mutation/trade-team.service';
+export * from './services/query/authenticate.service';
+export * from './services/query/get-all-leagues.service';
+export * from './services/query/get-league.service';

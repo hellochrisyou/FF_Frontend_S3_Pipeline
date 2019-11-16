@@ -2,9 +2,9 @@ import { ApiService } from '../core/services/api/api.service';
 import { LeagueService } from '../core/services/model/league.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Dto } from 'src/app/shared/model/interface.model';
+import { Dto } from '@shared/model/interface.model';
 import * as globals from '../shared/var/enum';
-import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { SubmitPopupDialog } from '@shared/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
