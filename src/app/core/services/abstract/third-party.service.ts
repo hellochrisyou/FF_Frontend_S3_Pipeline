@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { QB, RB, WR, TE, DEF, Kicker } from '@shared/model/interface.model';
 import { HttpClient } from '@angular/common/http';
-import { StatsFunctionService } from '../logic/stats-function.service';
-import { ApiService } from '../api/api.service';
-import { FilterService } from '../logic/filter.service';
+import { ApiService, FilterService, StatsFunctionService } from '@core';
 
 @Injectable({
   providedIn: 'root'

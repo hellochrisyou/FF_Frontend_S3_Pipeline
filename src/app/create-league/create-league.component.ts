@@ -1,9 +1,8 @@
-import { ApiService } from '@core/index';
+import { ApiService } from '@core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { League } from '@shared/model/interface.model';
-import { Account, Team } from '../shared/model/interface.model';
-import { LeagueService } from '@core/index';
+import { Account, Team, League } from '@shared/model/interface.model';
+import { LeagueService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { SubmitPopupDialog } from '@shared/dialog';
 import { Router } from '@angular/router';

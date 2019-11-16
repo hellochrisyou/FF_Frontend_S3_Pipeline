@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WaiverService } from '../core/services/concrete/waiver.service';
 
 @Component({
   selector: 'app-in-season',

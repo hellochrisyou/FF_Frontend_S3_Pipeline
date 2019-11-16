@@ -36,3 +36,4 @@ export const defCol: string[] = [
 export const kCol: string[] = ['button', 'name', 'fg0To19', 'fg20To29', 'fg30To39', 'fg40To49', 'fg50Plus', 'pat'];
 export const teamCol: string[] = ['name', 'position'];
 export const playerCol: string[] = ['button', 'name', 'position', 'fantasy_points'];
+export const homeCol: string[] = ['option', 'name', 'count']

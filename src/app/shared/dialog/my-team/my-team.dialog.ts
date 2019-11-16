@@ -5,7 +5,7 @@ import { LeagueService } from '@core/services/model/league.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import * as global from '../../var/globals';
-import { AddPlayerService, ToggleTradeService } from '@core/index';
+import { AddPlayerService, ToggleTradeService } from '@core';
 @Component({
   selector: 'app-my-team-dialog',
   templateUrl: './my-team.dialog.html',

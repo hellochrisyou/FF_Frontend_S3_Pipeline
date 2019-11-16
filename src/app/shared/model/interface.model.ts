@@ -1,4 +1,4 @@
-import { Role } from '../var/enum';
+import { Role } from '@shared/var/enum';
 
 export interface QB {
   name: string;

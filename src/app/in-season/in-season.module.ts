@@ -1,12 +1,6 @@
-import { MaterialModule } from '../shared/material.module';
 import { NgModule } from '@angular/core';
 import { InSeasonRoutingModule } from './in-season-routing.module';
-import { InSeasonComponent } from './in-season.component';
-import { MyTeamComponent } from './my-team/my-team.component';
-import { TradeComponent } from './trade/trade.component';
-import { WaiverComponent } from './waiver/waiver.component';
-import { SharedModule } from '../shared/shared.module';
-import { WaiverService } from '../core/services/concrete/waiver.service';
+import { SharedModule } from '@shared/shared.module';
 
 import * as fromInSeason from './index';
 

@@ -9,14 +9,14 @@
       "@shared/*": [
         "app/shared/*"
       ],
-      "@core/*": [
-        "app/core/*"
+      "@core": [
+        "app/core/index"
       ],
-      "@inSeason/*": [
-        "app/in-season/*"
+      "@inSeason": [
+        "app/in-season/index"
       ],
-      "@draft/*": [
-        "app/draft/*"
+      "@draft": [
+        "app/draft/index"
       ],
       "@services/*": [
         "app/core/services/*"

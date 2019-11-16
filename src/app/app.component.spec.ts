@@ -1,39 +1,48 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { LeagueService } from './core/services/model/league.service';
+import { AuthService } from './core/services/auth.service';
+import { FormBuilder } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
-import { HttpClientModule } from '@angular/common/http';
-
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  beforeEach(() => {
+    const leagueServiceStub = {};
+    const authServiceStub = {};
+    const formBuilderStub = { group: object => ({}) };
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        MaterialModule,
-        HttpClientModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [AppComponent],
+      providers: [
+        { provide: LeagueService, useValue: leagueServiceStub },
+        { provide: AuthService, useValue: authServiceStub },
+        { provide: FormBuilder, useValue: formBuilderStub }
+      ]
+    });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
-
-  // it(`should have as title 'Fantasy Football'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual('Fantasy Football');
-  // });
-
-  // it('should render title in a h1 tag', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to Fantasy Football!');
-  // });
+  it('can load instance', () => {
+    expect(component).toBeTruthy();
+  });
+  it('condition defaults to: true', () => {
+    expect(component.condition).toEqual(true);
+  });
+  it('submitted defaults to: false', () => {
+    expect(component.submitted).toEqual(false);
+  });
+  it('loggedIn defaults to: false', () => {
+    expect(component.loggedIn).toEqual(false);
+  });
+  describe('ngOnInit', () => {
+    it('makes expected calls', () => {
+      const formBuilderStub: FormBuilder = fixture.debugElement.injector.get(
+        FormBuilder
+      );
+      spyOn(formBuilderStub, 'group').and.callThrough();
+      component.ngOnInit();
+      expect(formBuilderStub.group).toHaveBeenCalled();
+    });
+  });
 });

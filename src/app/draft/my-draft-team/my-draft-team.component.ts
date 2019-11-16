@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { LeagueService } from '@core/index';
+import { MatTableDataSource } from '@angular/material/table';
+import { LeagueService } from '@core';
 import { Player } from '@shared/model/interface.model';
+import * as global from '@shared/var/globals';
 
 @Component({
   selector: 'app-my-draft-team',
@@ -10,7 +11,7 @@ import { Player } from '@shared/model/interface.model';
   styleUrls: ['./my-draft-team.component.scss']
 })
 export class MyDraftTeamComponent implements OnInit {
-  playerCol: string[] = ['name', 'position', 'points'];
+  playerCol: string[] = global.playerCol;
   myPlayers: Player[] = [];
   dataSource = new MatTableDataSource(this.myPlayers);
 
@@ -18,9 +19,9 @@ export class MyDraftTeamComponent implements OnInit {
 
   constructor(public leagueService: LeagueService) { }
 
+
   ngOnInit() {
     this.dataSource.sort = this.sort;
     this.myPlayers = this.leagueService.getMyPlayers();
-    console.log('myplayers', this.myPlayers);
   }
 }

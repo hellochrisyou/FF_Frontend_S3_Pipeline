@@ -1,13 +1,13 @@
 import { Component, ViewChild, Input, Output, EventEmitter, AfterViewInit, OnInit, DoCheck } from '@angular/core';
-import * as global from '../../var/globals';
-import { QB, Player } from '../../model/interface.model';
+import * as global from '@shared/var/globals';
+import { QB, Player } from '@shared/model/interface.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { AddPlayerService, CloseDialogService, NotifyService } from '@core/index';
-import { LeagueService } from '@core/index';
+import { AddPlayerService, CloseDialogService, NotifyService } from '@core';
+import { LeagueService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
-import { MyTeamDialog } from '../../dialog/my-team/my-team.dialog';
+import { MyTeamDialog } from '@shared/dialog';
 
 @Component({
   selector: 'app-qb-table',

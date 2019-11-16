@@ -4,7 +4,7 @@ import { Kicker, Player } from '../../model/interface.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { AddPlayerService, LeagueService, CloseDialogService, NotifyService } from '@core/index';
+import { AddPlayerService, LeagueService, CloseDialogService, NotifyService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 import { MyTeamDialog } from '../../dialog/my-team/my-team.dialog';
 

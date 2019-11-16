@@ -1,12 +1,12 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import * as global from '../../var/globals';
-import { WR, Player, WaiverData } from '../../model/interface.model';
+import * as global from '@shared/var/globals';
+import { WR, Player, WaiverData } from '@shared/model/interface.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { AddPlayerService, LeagueService, CloseDialogService, NotifyService } from '@core/index';
+import { AddPlayerService, LeagueService, CloseDialogService, NotifyService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
-import { MyTeamDialog } from '../../dialog/my-team/my-team.dialog';
+import { MyTeamDialog } from '@shared/dialog';
 
 @Component({
   selector: 'app-wr-table',

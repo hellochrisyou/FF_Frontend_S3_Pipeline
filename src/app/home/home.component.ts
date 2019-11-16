@@ -1,12 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-// import {AuthService} from '../core/auth/auth.service';
-import { LeagueService } from '../core/services/model/league.service';
-import { ApiService } from '../core/services/api/api.service';
-import * as globals from '../shared/var/enum';
-import { League, LeagueMenu } from '../shared/model/interface.model';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { AfterViewInit, Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { ApiService, LeagueService } from '@core';
+import { League, LeagueMenu } from '@shared/model/interface.model';
+import * as links from '@shared/var/enum';
+import * as global from '@shared/var/globals';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -23,27 +21,24 @@ export class HomeComponent implements AfterViewInit {
   draft = 'Draft';
   onGoing = 'Ongoing';
 
-  displayedColumns: string[] = ['option', 'name', 'count'];
+  homeCol: string[] = global.homeCol;
 
   constructor(
-    // public auth: AuthService,
     private formBuilder: FormBuilder,
     private leagueService: LeagueService,
     private api: ApiService
   ) { }
   ngAfterViewInit() {
     const userName = this.leagueService.getUserName();
-    this.api.httpGet(globals.ApiUrls.findAccount + userName).subscribe(account => {
+    this.api.httpGet(links.ApiUrls.findAccount + userName).subscribe(account => {
       this.leagueService.setMyAccount(account);
-      console.log('#1', account);
-      this.api.httpGetAll(globals.ApiUrls.getAllLeagues).subscribe(leagues => {
+      this.api.httpGetAll(links.ApiUrls.getAllLeagues).subscribe(leagues => {
         this.leagueService.setAllLeagues(leagues);
         this.leagueMenus = this.leagueService.setLeagueMenu(leagues);
         this.dataSource = new MatTableDataSource(this.leagueMenus);
       });
     });
 
-    console.log('successful');
     this.leagueFormGroup = this.formBuilder.group({
       leagueFormCtrl: ['', , Validators.required, Validators.min(1)]
     });
@@ -58,3 +53,5 @@ export class HomeComponent implements AfterViewInit {
     this.leagueService.setMyLeague(this.leagueMenus[index].name);
   }
 }
+
+

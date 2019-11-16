@@ -1,5 +1,4 @@
-import { ApiService } from '../core/services/api/api.service';
-import { LeagueService } from '../core/services/model/league.service';
+import { ApiService, LeagueService } from '@core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Dto } from '@shared/model/interface.model';

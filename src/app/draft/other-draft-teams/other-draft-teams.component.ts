@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from '@shared/model/interface.model';
-import { LeagueService } from '@core/index';
+import { LeagueService } from '@core';
 
 @Component({
   selector: 'app-other-draft-teams',

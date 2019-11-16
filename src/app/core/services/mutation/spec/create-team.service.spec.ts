@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { CreateTeamService } from '../create-team.service';
-
+import { CreateTeamService } from '@core';
 describe('CreateTeamService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
-    const service: CreateTeamService = TestBed.get(CreateTeamService);
+  let service: CreateTeamService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [CreateTeamService] });
+    service = TestBed.get(CreateTeamService);
+  });
+  it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 });

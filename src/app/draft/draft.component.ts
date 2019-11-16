@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DraftService, LeagueService } from '@core/index';
+import { DraftService, LeagueService } from '@core';
 @Component({
   selector: 'app-draft',
   templateUrl: './draft.component.html',

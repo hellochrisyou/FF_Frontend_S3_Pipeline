@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { AuthenticateService, AuthService, RegisterService } from '@core/index';
+import { AuthenticateService, AuthService, RegisterService } from '@core';
 import { Dto } from '@shared/model/interface.model';
 
 @Component({

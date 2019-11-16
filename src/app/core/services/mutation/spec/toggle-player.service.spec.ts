@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { TogglePlayerService } from '../toggle-player.service';
-
+import { TogglePlayerService } from '@core';
 describe('TogglePlayerService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
-    const service: TogglePlayerService = TestBed.get(TogglePlayerService);
+  let service: TogglePlayerService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [TogglePlayerService] });
+    service = TestBed.get(TogglePlayerService);
+  });
+  it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 });

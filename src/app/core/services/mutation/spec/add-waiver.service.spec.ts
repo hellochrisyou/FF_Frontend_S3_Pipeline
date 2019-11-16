@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { AddWaiverService } from '../add-waiver.service';
-
+import { AddWaiverService } from '@core';
 describe('AddWaiverService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
-    const service: AddWaiverService = TestBed.get(AddWaiverService);
+  let service: AddWaiverService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [AddWaiverService] });
+    service = TestBed.get(AddWaiverService);
+  });
+  it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 });

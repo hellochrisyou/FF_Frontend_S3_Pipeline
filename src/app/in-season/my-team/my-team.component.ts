@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SubmitPopupDialog } from '@shared/dialog/index';
-import { ApiService, LeagueService, CloseDialogService, AddPlayerService, ToggleTradeService } from '@core/index';
+import { SubmitPopupDialog } from '@shared/dialog';
+import { ApiService, LeagueService, CloseDialogService, AddPlayerService, ToggleTradeService } from '@core';
 import * as _globals from '@shared/var/globals';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';

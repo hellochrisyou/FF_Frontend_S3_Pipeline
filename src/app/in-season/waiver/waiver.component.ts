@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SubmitPopupDialog } from '@shared/dialog';
 import { Router } from '@angular/router';
-import { ApiService, AddPlayerService, WaiverService } from '@core/index';
-import * as globals from '../../shared/var/enum';
-import { CloseDialogService } from '@core/index';
+import { ApiService, AddPlayerService, WaiverService } from '@core';
+import * as globals from '@shared/var/enum';
+import { CloseDialogService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({

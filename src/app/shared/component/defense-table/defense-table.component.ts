@@ -1,19 +1,19 @@
 import { Component, ViewChild, EventEmitter, AfterViewInit, OnInit, DoCheck } from '@angular/core';
-import * as globals from '../../var/globals';
-import { DEF, Player } from '../../model/interface.model';
+import * as global from '@shared/var/globals';
+import { DEF, Player } from '@shared/model/interface.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { LeagueService, AddPlayerService, CloseDialogService, NotifyService } from '@core/index';
+import { LeagueService, AddPlayerService, CloseDialogService, NotifyService } from '@core';
 import { MatDialog } from '@angular/material/dialog';
-import { MyTeamDialog } from '../../dialog/my-team/my-team.dialog';
+import { MyTeamDialog } from '@shared/dialog/my-team/my-team.dialog';
 @Component({
   selector: 'app-defense-table',
   templateUrl: './defense-table.component.html',
   styleUrls: ['./defense-table.component.scss']
 })
 export class DefenseTableComponent implements OnInit {
-  defCol: string[] = globals.defCol;
+  defCol: string[] = global.defCol;
   defenseArray: DEF[];
   myPlayer: Player = {
     playerName: 'default',

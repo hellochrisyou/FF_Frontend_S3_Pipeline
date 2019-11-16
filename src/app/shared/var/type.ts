@@ -1,4 +1,4 @@
-import { Account, League, Team, Player } from '../model/interface.model';
+import { Account, League, Team, Player } from '@shared/model/interface.model';
 import { Role } from './enum';
 
 export type RoleOutput = {

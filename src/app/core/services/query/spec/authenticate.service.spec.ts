@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { AuthenticateService } from '../authenticate.service';
-
+import { AuthenticateService } from '@core';
 describe('AuthenticateService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
-    const service: AuthenticateService = TestBed.get(AuthenticateService);
+  let service: AuthenticateService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [AuthenticateService] });
+    service = TestBed.get(AuthenticateService);
+  });
+  it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 });
