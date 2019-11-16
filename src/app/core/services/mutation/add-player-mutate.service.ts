@@ -11,7 +11,7 @@ export class AddPlayerMutateService extends Mutation<LeagueOutput> {
   mutation AddPlayer($dto: Dto!) {
     addPlayer(dto: $dto) {
       leagueName
-    }
+    } 
   }
   `;
 }
