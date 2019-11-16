@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { AddPlayerMutateService } from '@core';
+import { AddPlayerMutateService } from '../add-player-mutate.service';
 describe('AddPlayerMutateService', () => {
   let service: AddPlayerMutateService;
   beforeEach(() => {

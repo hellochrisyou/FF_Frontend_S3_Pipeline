@@ -1,6 +1,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { ApiService, FilterService, DraftService, NotifyService, StatsFunctionService } from '@core';
+import { DraftService } from '../concrete/draft.service';
+import { ApiService } from '../api/api.service';
+import { FilterService } from '../logic/filter.service';
+import { NotifyService } from '../emit/notify.service';
+import { StatsFunctionService } from '../logic/stats-function.service';
 describe('DraftService', () => {
   let service: DraftService;
   beforeEach(() => {

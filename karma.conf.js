@@ -21,7 +21,7 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml'],
-    port: 9876,
+    port: 9999,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
@@ -34,8 +34,20 @@ module.exports = function (config) {
     //     restartOnFileChange: true
     //   })
     // };
-    browsers: ['Chrome'],
-    singleRun: false,
-    restartOnFileChange: true
+    browsers: [
+      'ChromeDebugging'
+    ],
+
+    customLaunchers: {
+      ChromeDebugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9999']
+      }
+    }
+    // browsers: ['Chrome'],
+    //   singleRun: false,
+    //   restartOnFileChange: true
+    // });
+
   });
 };

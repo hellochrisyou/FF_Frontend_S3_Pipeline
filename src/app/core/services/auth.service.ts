@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ACCOUNT_NAME, TOKEN } from '../../shared/var/globals';
+import { ACCOUNT_NAME, TOKEN } from '@shared/var/globals';
 import { Apollo } from 'apollo-angular';
 import { Router } from '@angular/router';
 

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { StatsFunctionService } from '@core';
+import { StatsFunctionService } from '../logic/stats-function.service';
 describe('StatsFunctionService', () => {
   let service: StatsFunctionService;
   beforeEach(() => {

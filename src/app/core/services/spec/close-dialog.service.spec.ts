@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CloseDialogService } from '@core';
+import { CloseDialogService } from '../emit/close-dialog.service';
 describe('CloseDialogService', () => {
   let service: CloseDialogService;
   beforeEach(() => {

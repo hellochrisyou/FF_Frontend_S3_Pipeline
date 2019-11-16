@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Dto } from '@shared/model/interface.model';
-import { ToggleTradeService } from '@core';
+import { ToggleTradeService } from '../emit//toggle-trade.service';
 describe('ToggleTradeService', () => {
   let service: ToggleTradeService;
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Player, Dto, WaiverData } from '../../model/interface.model';
-import { LeagueService } from '@core/services/model/league.service';
+import { LeagueService } from '@core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import * as global from '../../var/globals';

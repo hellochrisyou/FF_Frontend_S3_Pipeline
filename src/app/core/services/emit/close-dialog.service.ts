@@ -1,5 +1,4 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { League, Dto } from '@shared/model/interface.model';
 
 @Injectable({
   providedIn: 'root'

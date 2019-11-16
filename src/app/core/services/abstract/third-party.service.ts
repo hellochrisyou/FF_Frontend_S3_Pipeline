@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-
 import { QB, RB, WR, TE, DEF, Kicker } from '@shared/model/interface.model';
-import { HttpClient } from '@angular/common/http';
-import { ApiService, FilterService, StatsFunctionService } from '@core';
 
 @Injectable({
   providedIn: 'root'

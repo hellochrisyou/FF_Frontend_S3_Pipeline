@@ -2,7 +2,13 @@ import { Injectable } from '@angular/core';
 import { QB, RB, WR, TE, DEF, Kicker, Player } from '@shared/model/interface.model';
 import { HttpClient } from '@angular/common/http';
 import * as globals from '@shared/var/enum';
-import { ApiService, FilterService, NotifyService, StatsFunctionService, ThirdPartyService } from '@core';
+
+import { ApiService } from '../api/api.service';
+import { FilterService } from '../logic/filter.service';
+import { NotifyService } from '../emit/notify.service';
+import { StatsFunctionService } from '../logic/stats-function.service';
+import { ThirdPartyService } from '../abstract/third-party.service';
+
 @Injectable({
   providedIn: 'root'
 })

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ThirdPartyService } from '@core';
+import { ThirdPartyService } from '../abstract/third-party.service';
 describe('ThirdPartyService', () => {
   let service: ThirdPartyService;
   beforeEach(() => {

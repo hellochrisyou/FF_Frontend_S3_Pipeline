@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { QB, RB, WR, TE, DEF, Kicker } from '@shared/model/interface.model';
-import { CalculatePointsService } from '@core';
+import { CalculatePointsService } from '../logic/calculate-fantasy-points.service';
 describe('CalculatePointsService', () => {
   let service: CalculatePointsService;
   beforeEach(() => {

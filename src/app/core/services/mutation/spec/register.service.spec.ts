@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { RegisterService } from '@core';
+import { RegisterService } from '../register.service';
 describe('RegisterService', () => {
   let service: RegisterService;
   beforeEach(() => {

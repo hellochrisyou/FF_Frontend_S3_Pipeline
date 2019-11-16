@@ -3,8 +3,11 @@ import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
+import { WaiverService } from '@core';
+import { ApiService } from '../api/api.service';
+import { FilterService } from '../logic/filter.service';
+import { NotifyService } from '../emit/notify.service';
 import { StatsFunctionService } from '../logic/stats-function.service';
-import { ApiService, FilterService, NotifyService, WaiverService } from '@core';
 describe('WaiverService', () => {
   let service: WaiverService;
   beforeEach(() => {

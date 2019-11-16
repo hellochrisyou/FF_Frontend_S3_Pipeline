@@ -4,7 +4,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiService } from '@core';
+import { ApiService } from '../api/api.service';
 describe('ApiService', () => {
   let service: ApiService;
   beforeEach(() => {

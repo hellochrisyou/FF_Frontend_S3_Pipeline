@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { Account, Player } from '@shared/model/interface.model';
-import { FilterService, NotifyService, LeagueService } from '@core';
+import { LeagueService } from '../model/league.service';
+import { FilterService } from '../logic/filter.service';
+import { NotifyService } from '../emit/notify.service';
+
 describe('LeagueService', () => {
   let service: LeagueService;
   beforeEach(() => {

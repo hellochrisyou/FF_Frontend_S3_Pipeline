@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { AddWaiverService } from '@core';
+import { AddWaiverService } from '../add-waiver.service';
 describe('AddWaiverService', () => {
   let service: AddWaiverService;
   beforeEach(() => {

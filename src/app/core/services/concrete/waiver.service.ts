@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiService, FilterService, NotifyService, StatsFunctionService, ThirdPartyService } from '@core';
-import * as globals from '@shared//var/enum';
+import { ApiService } from '../api/api.service';
+import { FilterService } from '../logic/filter.service';
+import { NotifyService } from '../emit/notify.service';
+import { StatsFunctionService } from '../logic/stats-function.service';
+import { ThirdPartyService } from '../abstract/third-party.service';
+import * as globals from '@shared/var/enum';
 
 @Injectable({
   providedIn: 'root'

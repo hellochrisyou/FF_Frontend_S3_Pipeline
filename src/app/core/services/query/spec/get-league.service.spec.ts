@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { GetLeagueService } from '@core';
+import { GetLeagueService } from '../get-league.service';
 describe('GetLeagueService', () => {
   let service: GetLeagueService;
   beforeEach(() => {

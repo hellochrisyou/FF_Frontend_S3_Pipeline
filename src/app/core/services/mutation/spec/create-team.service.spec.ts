@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CreateTeamService } from '@core';
+import { CreateTeamService } from '../create-team.service';
 describe('CreateTeamService', () => {
   let service: CreateTeamService;
   beforeEach(() => {

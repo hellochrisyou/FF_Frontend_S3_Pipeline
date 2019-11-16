@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Apollo } from 'apollo-angular';
 import { Router } from '@angular/router';
-import { AuthService } from '@core';
+import { AuthService } from './auth.service';
 describe('AuthService', () => {
   let service: AuthService;
   beforeEach(() => {

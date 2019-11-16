@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { TogglePlayerService } from '@core';
+import { TogglePlayerService } from '../toggle-player.service';
 describe('TogglePlayerService', () => {
   let service: TogglePlayerService;
   beforeEach(() => {

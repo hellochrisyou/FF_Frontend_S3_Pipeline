@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Dto } from '@shared/model/interface.model';
-import { AddPlayerService } from '@core';
+import { AddPlayerService } from '../emit/add-player.service';
 describe('AddPlayerService', () => {
   let service: AddPlayerService;
   beforeEach(() => {
