@@ -1,14 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { LeagueService } from 'src/app/core/services/model/league.service';
-import { DraftService } from 'src/app/core/services/concrete/draft.service';
-import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { Component, OnInit } from '@angular/core';
+import { SubmitPopupDialog } from '@shared/dialog';
 import { Router } from '@angular/router';
-import { WaiverService } from 'src/app/core/services/concrete/waiver.service';
-import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
-import { ApiService } from 'src/app/core/services/api/api.service';
+import { ApiService, AddPlayerService, WaiverService } from '@core/index';
 import * as globals from '../../shared/var/enum';
+import { CloseDialogService } from '@core/index';
 import { MatDialog } from '@angular/material/dialog';
-import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
 
 @Component({
   selector: 'app-waiver',

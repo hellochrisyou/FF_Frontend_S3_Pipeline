@@ -1,14 +1,11 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData, Player, Dto, WaiverData } from '../../model/interface.model';
-import { LeagueService } from 'src/app/core/services/model/league.service';
+import { Player, Dto, WaiverData } from '../../model/interface.model';
+import { LeagueService } from '@core/services/model/league.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import * as global from '../../var/globals';
-import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
-import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
-import { ToggleTradeService } from 'src/app/core/services/emit/toggle-trade.service';
-
+import { AddPlayerService, ToggleTradeService } from '@core/index';
 @Component({
   selector: 'app-my-team-dialog',
   templateUrl: './my-team.dialog.html',

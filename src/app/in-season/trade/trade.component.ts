@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LeagueService } from 'src/app/core/services/model/league.service';
-import { Team, Player } from 'src/app/shared/model/interface.model';
-import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
-import { MyTeamDialog } from 'src/app/shared/dialog/my-team/my-team.dialog';
+import { Team, Player } from '@shared/model/interface.model';
 import { MatDialog } from '@angular/material/dialog';
 import * as globals from '../../shared/var/enum';
 import { Router } from '@angular/router';
-import { ToggleTradeService } from 'src/app/core/services/emit/toggle-trade.service';
-import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import { ApiService } from 'src/app/core/services/api/api.service';
+import { SubmitPopupDialog, MyTeamDialog } from '@shared/dialog';
+import { ApiService, CloseDialogService, LeagueService, ToggleTradeService } from '@core/index';
 
 @Component({
   selector: 'app-trade',

@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import { AddPlayerService } from '../../core/services/emit/add-player.service';
-import { ApiService } from 'src/app/core/services/api/api.service';
+import { SubmitPopupDialog } from '@shared/dialog';
+import { ApiService, AddPlayerService } from '@core/index';
 import * as globals from '../../shared/var/enum';
 import { MatDialog } from '@angular/material/dialog';
 

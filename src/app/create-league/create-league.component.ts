@@ -1,15 +1,13 @@
-import { ApiService } from '../core/services/api/api.service';
+import { ApiService } from '@core/index';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
-import { League } from 'src/app/shared/model/interface.model';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { League } from '@shared/model/interface.model';
 import { Account, Team } from '../shared/model/interface.model';
-import { LeagueService } from 'src/app/core/services/model/league.service';
+import { LeagueService } from '@core/index';
 import { MatDialog } from '@angular/material/dialog';
-import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
+import { SubmitPopupDialog } from '@shared/dialog';
 import { Router } from '@angular/router';
-import * as globals from '../shared/var/enum';
 import { Apollo } from 'apollo-angular';
-import { ErrorStateMatcher } from '@angular/material/core';
 
 
 @Component({

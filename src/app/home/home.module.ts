@@ -1,15 +1,11 @@
-import { DraftService } from 'src/app/core/services/concrete/draft.service';
 import { NgModule } from '@angular/core';
 import { HomeRoutingModule } from './home-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { AddPlayerService } from '../core/services/emit/add-player.service';
+import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from './home.component';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [SharedModule, CommonModule, HomeRoutingModule],
+  imports: [SharedModule, HomeRoutingModule],
   declarations: [HomeComponent],
-  exports: [],
-  providers: []
+  exports: [HomeComponent]
 })
 export class HomeModule { }

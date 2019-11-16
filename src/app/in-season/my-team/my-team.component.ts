@@ -1,18 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ToggleTradeService } from 'src/app/core/services/emit/toggle-trade.service';
-import { SubmitPopupDialog } from 'src/app/shared/dialog/submit-popup/submit-popup.dialog';
-import { ApiService } from 'src/app/core/services/api/api.service';
-import * as _globals from '../../shared/var/globals';
-import * as globals from '../../shared/var/enum';
+import { SubmitPopupDialog } from '@shared/dialog/index';
+import { ApiService, LeagueService, CloseDialogService, AddPlayerService, ToggleTradeService } from '@core/index';
+import * as _globals from '@shared/var/globals';
 import { Router } from '@angular/router';
-import { LeagueService } from 'src/app/core/services/model/league.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Player } from 'src/app/shared/model/interface.model';
+import { Player } from '@shared/model/interface.model';
 import { MatSort } from '@angular/material/sort';
-import { MyTeamDialog } from 'src/app/shared/dialog/my-team/my-team.dialog';
-import { CloseDialogService } from 'src/app/core/services/emit/close-dialog.service';
+import { MyTeamDialog } from '@shared/dialog';
 import { MatDialog } from '@angular/material/dialog';
-import { AddPlayerService } from 'src/app/core/services/emit/add-player.service';
 
 @Component({
   selector: 'app-my-team',
@@ -46,11 +41,11 @@ export class MyTeamComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.toggleTradeService.statusPopUp.subscribe(dto => {
-      this.api.httpPut(globals.ApiUrls.togglePlayer, dto).subscribe(returnData => {
-        this.successPopup();
-      });
-    });
+    // this.toggleTradeService.statusPopUp.subscribe(dto => {
+    //   this.api.httpPut(globals.ApiUrls.togglePlayer, dto).subscribe(returnData => {
+    //     this.successPopup();
+    //   });
+    // });
     this.addPlayerService.setIsWaiver(false);
     this.activePlayers = this.leagueService.getActivePlayers();
     this.inActivePlayers = this.leagueService.getInActivePlayers();

@@ -1,7 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { League, Account, Team, Player, Dto, LeagueMenu, Matchup } from 'src/app/shared/model/interface.model';
+import { League, Account, Team, Player, Dto, LeagueMenu, Matchup } from '@shared/model/interface.model';
 import { FilterService } from '../logic/filter.service';
-import { constructor } from 'q';
 import { NotifyService } from '../emit/notify.service';
 
 @Injectable({

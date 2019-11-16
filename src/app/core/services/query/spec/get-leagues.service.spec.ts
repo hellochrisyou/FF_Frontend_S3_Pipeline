@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GetLeaguesService } from '../get-leagues.service';
+import { GetAllLeaguesService } from '../get-all-leagues.service';
 
-describe('GetLeaguesService', () => {
+describe('GetAllLeaguesService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GetLeaguesService = TestBed.get(GetLeaguesService);
+    const service: GetAllLeaguesService = TestBed.get(GetAllLeaguesService);
     expect(service).toBeTruthy();
   });
 });

@@ -1,17 +1,11 @@
-import { DraftService } from 'src/app/core/services/concrete/draft.service';
 import { NgModule } from '@angular/core';
 import { DraftRoutingModule } from './draft-routing.module';
-import { DraftComponent } from './draft.component';
-import { MyDraftTeamComponent } from './my-draft-team/my-draft-team.component';
-import { OtherDraftTeamsComponent } from './other-draft-teams/other-draft-teams.component';
-import { DraftTeamsComponent } from './draft-teams/draft-teams.component';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { AddPlayerService } from '../core/services/emit/add-player.service';
+import { SharedModule } from '@shared/shared.module';
+import * as fromDraft from './index';
 
 @NgModule({
-  declarations: [DraftComponent, MyDraftTeamComponent, OtherDraftTeamsComponent, DraftTeamsComponent],
+  declarations: [...fromDraft.draft],
   imports: [SharedModule, DraftRoutingModule],
-  exports: [DraftComponent, MyDraftTeamComponent, OtherDraftTeamsComponent, DraftTeamsComponent],
-  providers: []
+  exports: [...fromDraft.draft]
 })
 export class DraftModule { }

@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { LeagueService } from 'src/app/core/services/model/league.service';
-import { Player } from 'src/app/shared/model/interface.model';
+import { LeagueService } from '@core/index';
+import { Player } from '@shared/model/interface.model';
 
 @Component({
   selector: 'app-my-draft-team',

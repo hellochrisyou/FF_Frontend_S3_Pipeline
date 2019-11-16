@@ -14,16 +14,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import * as fromPlayerTable from './component/index';
+import * as fromDialog from './dialog/index';
+
 @NgModule({
   declarations: [
-    SubmitPopupDialog,
-    MyTeamDialog,
-    QbTableComponent,
-    RbTableComponent,
-    WrTableComponent,
-    TeTableComponent,
-    DefenseTableComponent,
-    KickerTableComponent
+    ...fromPlayerTable.playerTable,
+    ...fromDialog.dialog,
   ],
   imports: [
     CommonModule,
@@ -40,17 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
-    // Dialog
-    SubmitPopupDialog,
-    MyTeamDialog,
-    // Componentes
-    QbTableComponent,
-    RbTableComponent,
-    WrTableComponent,
-    TeTableComponent,
-    DefenseTableComponent,
-    KickerTableComponent
+    ...fromPlayerTable.playerTable,
+    ...fromDialog.dialog,
   ],
-  entryComponents: [SubmitPopupDialog, MyTeamDialog]
+  entryComponents: [...fromDialog.dialog]
 })
 export class SharedModule { }
