@@ -14,7 +14,7 @@ export function provideApollo(httpLink: HttpLink) {
 
     const basicHeader = new HttpHeaders()
         .set('Access-Control-Allow-Origin', '*')
-        .append('Authorization', localStorage.getItem(TOKEN))
+        // .append('Authorization', localStorage.getItem(TOKEN))
         .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
         .append('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin, Origin, Content-Type, Access-Control-Allow-Headers, Authorization, Access-Control-Allow-Methods')
         .append('Content-Type', 'application/json')
