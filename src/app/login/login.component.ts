@@ -4,6 +4,7 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthenticateService, AuthService, RegisterService } from '@core';
 import { Dto } from '@shared/model/interface.model';
+import { Apollo } from 'apollo-angular';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,11 @@ import { Dto } from '@shared/model/interface.model';
 })
 export class LoginComponent implements OnInit {
 
-  thisDto: Dto = {
-    myAccountName: '',
-    password: ''
-  }
+  thisDto: Dto;
 
-  condition: boolean = true;
+  condition = true;
   submitted = false;
-  loggedIn: boolean = false;
+  loggedIn = false;
 
   signInFG: FormGroup;
   signUpFG: FormGroup;
@@ -32,6 +30,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private apollo: Apollo,
     private authenticateService: AuthenticateService,
     private registerService: RegisterService
   ) {
@@ -57,48 +56,62 @@ export class LoginComponent implements OnInit {
   }
 
   login(accountName: string, password: string) {
-    let thisDto: Dto = {
-      myAccountName: accountName,
-      password: password
-    };
-    const variables = thisDto;
-    this.authenticateService.mutate(
-      {
-        mutation: AuthenticateService,
-        variables
-      })
-      .subscribe((result) => {
-        console.log('reuslt', result);
-        this.authService.setAccountName(this.thisDto.myAccountName);
-        this.authService.saveUserData(this.thisDto.myAccountName, result.data.token);
-        this.router.navigate(['/home']);
-      }, ((err) => {
-        console.log('login error', err);
-        this.onReset();
-      })
-      );
+    // const thisDto: Dto = {
+    //   myAccountName: accountName,
+    //   password
+    // };
+    // const variables = thisDto;
+    // this.authenticateService.mutate(
+    //   {
+    //     mutation: AuthenticateService,
+    //     variables
+    //   })
+    //   .subscribe((result) => {
+    //     console.log('reuslt', result);
+    //     this.authService.setAccountName(this.thisDto.myAccountName);
+    //     this.authService.saveUserData(this.thisDto.myAccountName, result.data.token);
+    //     this.router.navigate(['/home']);
+    //   }, ((err) => {
+    //     console.log('login error', err);
+    //     this.onReset();
+    //   })
+    //   );
   }
 
   register(accountName: string, password: string) {
-    let thisDto: Dto = {
-      myAccountName: accountName,
-      password: password
+    this.thisDto = {
+      myLeagueName: '',
+      myAccountName: password,
+      password: accountName,
+      myTeamName: '',
+      myTeamHelmet: '',
+      otherTeamName: '',
+      token: '',
+      player1: {
+        playerName: '',
+        position: '',
+        active: false
+      },
+      player2: {
+        playerName: '',
+        position: '',
+        active: false
+      }
     };
-    const variables = thisDto;
     this.registerService.mutate(
       {
         mutation: RegisterService,
-        variables
-      })
-      .subscribe((result) => {
-        this.authService.setAccountName(this.thisDto.myAccountName);
-        this.authService.saveUserData(this.thisDto.myAccountName, result.data.token);
-        this.router.navigate(['/home']);
+        variables: {
+          dto: this.thisDto
+        }
+      }).subscribe((result) => {
+        // this.authService.setAccountName(this.thisDto.myAccountName);
+        // this.authService.saveUserData(this.thisDto.myAccountName, result.data);
+        // this.router.navigate(['/home']);
       }, ((err) => {
         console.log('login error', err);
         this.onReset();
-      })
-      );
+      }));
   }
 
   onReset() {

@@ -6,19 +6,19 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import { ApolloLink, from, concat } from 'apollo-link';
 import { TOKEN } from './shared/var/globals';
-import { setContext } from "apollo-link-context";
+import { setContext } from 'apollo-link-context';
 
 const uri = 'http://localhost:9090/graphql';
 
 export function provideApollo(httpLink: HttpLink) {
 
     const basicHeader = new HttpHeaders()
-        .set('Access-Control-Allow-Origin', '*')
-        // .append('Authorization', localStorage.getItem(TOKEN))
+        .append('Access-Control-Allow-Origin', '*')
         .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-        .append('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin, Origin, Content-Type, Access-Control-Allow-Headers, Authorization, Access-Control-Allow-Methods')
+        // tslint:disable-next-line: max-line-length
+        .append('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization, Accept, Content-Length, Accept-Encoding')
         .append('Content-Type', 'application/json')
-        .append('Accept', 'application/graphql')
+        .append('Accept', 'application/json')
         ;
 
     if (localStorage.getItem(TOKEN) != null) {
@@ -38,16 +38,17 @@ export function provideApollo(httpLink: HttpLink) {
 
     // Error logger
     const errorLink = onError(({ graphQLErrors, networkError }) => {
-        if (graphQLErrors)
+        if (graphQLErrors) {
             graphQLErrors.map(({ message, locations, path }) =>
                 console.log(
                     `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
                 ),
             );
+        }
         if (networkError) {
             console.log('[Network error]', networkError);
             console.log('[graphQLErrors]', graphQLErrors);
-        };
+        }
     });
 
     const link = ApolloLink.from([basic, auth, errorLink, httpLink.create({ uri })]);
@@ -56,7 +57,7 @@ export function provideApollo(httpLink: HttpLink) {
         link,
         cache: new InMemoryCache(),
         useGETForQueries: true
-    }
+    };
 }
 
 @NgModule({

@@ -31,7 +31,7 @@ export class AuthService {
         private router: Router) {
     }
 
-    saveUserData(accountName: string, token: string) {
+    saveUserData(accountName: string, token: any) {
         localStorage.setItem(ACCOUNT_NAME, accountName);
         localStorage.setItem(TOKEN, token);
         this.setAccountName(accountName);

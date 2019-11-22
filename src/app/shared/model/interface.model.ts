@@ -117,10 +117,11 @@ export interface WaiverData {
 export interface Dto {
   myLeagueName?: string;
   myAccountName?: string;
-  password?: String;
+  password?: string;
   myTeamName?: string;
   myTeamHelmet?: string;
   otherTeamName?: string;
+  token?: string;
   player1?: Player;
   player2?: Player;
 }

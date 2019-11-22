@@ -14,7 +14,7 @@
                 <mat-hint align="start"><strong>Minimum Length: 3 | Maximum Length = 20</strong> </mat-hint>
                 <mat-error *ngIf="signUpPasswordCtrl.hasError('min') && !signUpPasswordCtrl.hasError('required')">Minimum Length: 3</mat-error>
             </mat-form-field>
-            <button (click)="register(signUpName, signUpPassword)">Sign In</button>
+            <button (click)="register(signUpName, signUpPassword)">Sign Up</button>
         </form>
     </div>
     <div class="form-container sign-in-container">

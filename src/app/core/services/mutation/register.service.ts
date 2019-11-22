@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { AccountOutput, tokenResponse } from '@shared/var/type';
+import { AccountOutput } from '@shared/var/type';
 import { Mutation } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService extends Mutation<tokenResponse> {
+export class RegisterService extends Mutation<AccountOutput> {
 
   document = gql`
-  mutation RegisterService($dto: Dto!) {
+  mutation register($dto: DtoInput) {
     register(dto: $dto) {
-      token
+        token
     }
+}`;
 }
-`;
-}
+ 
