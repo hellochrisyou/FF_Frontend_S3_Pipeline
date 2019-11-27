@@ -2,7 +2,7 @@ import { ThirdPartyService } from './services/abstract/third-party.service';
 import { ApiService } from './services/api/api.service';
 import { DraftService } from './services/concrete/draft.service';
 import { WaiverService } from './services/concrete/waiver.service';
-import { RegisterService } from './services/mutation/register.service';
+import { RegisterAccountService } from './services/mutation/register-account.service';
 import { AddPlayerService } from './services/emit/add-player.service';
 import { CloseDialogService } from './services/emit/close-dialog.service';
 import { NotifyService } from './services/emit/notify.service';
@@ -44,7 +44,7 @@ export const services: any[] = [
     FilterService,
     SeasonWeekService,
     StatsFunctionService,
-    RegisterService,
+    RegisterAccountService,
     LeagueService
 ];
 
@@ -66,10 +66,10 @@ export * from './services/mutation/add-player-mutate.service';
 export * from './services/mutation/add-waiver.service';
 export * from './services/mutation/create-league.service';
 export * from './services/mutation/create-team.service';
-export * from './services/mutation/register.service';
+export * from './services/mutation/register-account.service';
 export * from './services/mutation/toggle-player.service';
 export * from './services/mutation/trade-team.service';
 export * from './services/query/authenticate.service';
 export * from './services/query/get-all-leagues.service';
 export * from './services/query/get-league.service';
-export * from './services/mutation/register.service';
+export * from './services/mutation/register-account.service';

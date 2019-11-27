@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { AuthenticateService, AuthService, RegisterService } from '@core';
+import { AuthenticateService, AuthService, RegisterAccountService } from '@core';
 import { Dto } from '@shared/model/interface.model';
 import { Apollo } from 'apollo-angular';
 
@@ -30,9 +30,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private apollo: Apollo,
     private authenticateService: AuthenticateService,
-    private registerService: RegisterService
+    private registerAccountService: RegisterAccountService
   ) {
     // auth.handleAuthentication();
   }
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
     this.condition = !this.condition;
   }
 
-  login(accountName: string, password: string) {
+  loginAuthenticate(accountName: string, password: string) {
     // const thisDto: Dto = {
     //   myAccountName: accountName,
     //   password
@@ -78,33 +77,9 @@ export class LoginComponent implements OnInit {
     //   );
   }
 
-  register(accountName: string, password: string) {
-    this.thisDto = {
-      myLeagueName: '',
-      myAccountName: password,
-      password: accountName,
-      myTeamName: '',
-      myTeamHelmet: '',
-      otherTeamName: '',
-      token: '',
-      player1: {
-        playerName: '',
-        position: '',
-        active: false
-      },
-      player2: {
-        playerName: '',
-        position: '',
-        active: false
-      }
-    };
-    this.registerService.mutate(
-      {
-        mutation: RegisterService,
-        variables: {
-          dto: this.thisDto
-        }
-      }).subscribe((result) => {
+  loginRegister(argName: string, argPass: string) {
+    this.registerAccountService.registerAcct('test').subscribe((data) => {
+        console.log(data);
         // this.authService.setAccountName(this.thisDto.myAccountName);
         // this.authService.saveUserData(this.thisDto.myAccountName, result.data);
         // this.router.navigate(['/home']);

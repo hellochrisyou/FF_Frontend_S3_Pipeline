@@ -16,7 +16,7 @@ export function provideApollo(httpLink: HttpLink) {
         .append('Access-Control-Allow-Origin', '*')
         .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
         // tslint:disable-next-line: max-line-length
-        .append('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization, Accept, Content-Length, Accept-Encoding')
+        .append('Access-Control-Allow-Headers', 'client-security-token, X-Auth-Token, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization')
         .append('Content-Type', 'application/json')
         .append('Accept', 'application/json')
         ;
@@ -26,7 +26,7 @@ export function provideApollo(httpLink: HttpLink) {
     } else {
         basicHeader.append('Authorization', null);
     }
-
+ 
     const basic = setContext((op, ctx) => ({
         headers: basicHeader
     }));
